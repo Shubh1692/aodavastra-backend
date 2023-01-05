@@ -1,10 +1,10 @@
-import {Model} from "mongoose";
-import {v4 as uuid} from "uuid";
-import {Injectable} from "@nestjs/common";
-import {InjectModel} from "@nestjs/mongoose";
+import { Model } from "mongoose";
+import { v4 as uuid } from "uuid";
+import { Injectable } from "@nestjs/common";
+import { InjectModel } from "@nestjs/mongoose";
 
 import config from "../config";
-import {hashPassword} from "../common/auth";
+import { hashPassword } from "../common/auth";
 import {
   UserNotFoundException,
   EmailAlreadyUsedException,
@@ -12,37 +12,40 @@ import {
   ActivationTokenInvalidException,
 } from "../common/exceptions";
 
-import {User} from "./user.interface";
-import {UserMailerService} from "./user.mailer.service";
+import { User } from "./user.interface";
+import { UserMailerService } from "./user.mailer.service";
+import { PartialRight } from "lodash";
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectModel("User") private readonly userModel: Model<User>,
     private readonly userMailer: UserMailerService,
-  ) {}
+  ) { }
   /**
    * Creates user and sends activation email.
    * @throws duplicate key error when
    */
-  async create(email: string, password: string, origin: string): Promise<User> {
+  async create(email: string, password: string, origin: string, userData: Partial<User>): Promise<User> {
     try {
       const user = await this.userModel.create({
+        ...userData,
         email: email.toLowerCase(),
         password: await hashPassword(password),
         activationToken: uuid(),
         activationExpires: Date.now() + config.auth.activationExpireInMs,
       });
 
-      this.userMailer.sendActivationMail(
-        user.email,
-        user.id,
-        user.activationToken,
-        origin,
-      );
+      // this.userMailer.sendActivationMail(
+      //   user.email,
+      //   user.id,
+      //   user.activationToken,
+      //   origin,
+      // );
 
       return user;
-    } catch {
+    } catch (error){
+     console.log("==========", error)
       throw EmailAlreadyUsedException();
     }
   }
@@ -59,7 +62,7 @@ export class UserService {
 
   async findByEmail(email: string): Promise<User> {
     const user = await this.userModel.findOne(
-      {email: email.toLowerCase()},
+      { email: email.toLowerCase() },
       "+password",
     );
 

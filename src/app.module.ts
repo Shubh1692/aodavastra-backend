@@ -11,6 +11,10 @@ import {AuthModule} from "./auth/auth.module";
 import {UserModule} from "./user/user.module";
 import config from "./config";
 import { AddressModule } from "./address/address.module";
+import { FollowerModule } from "./follower/follower.module";
+import { PostModule } from "./post/post.module";
+import { PostLikeModule } from "./post-like/post-like.module";
+
 
 const DEV_TRANSPORTER = {
   host: "smtp.ethereal.email",
@@ -35,7 +39,10 @@ const DEV_TRANSPORTER = {
       }),
     }),
     UserModule,
-    AddressModule
+    AddressModule,
+    FollowerModule,
+    PostModule,
+    PostLikeModule,
   ],
   providers: config.isTest() ? undefined : [GlobalAccessLogger],
 })

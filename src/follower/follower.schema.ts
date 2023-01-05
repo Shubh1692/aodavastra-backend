@@ -4,7 +4,6 @@ import { Follower } from "./follower.interface";
 
 export const FollowerSchema = new mongoose.Schema<Follower>(
   {
-    id: { type: String, requried: true },
     followerUserId: { type: String, required: true, unique: true, ref: 'User' },
     followingUserId: { type: String, required: true, unique: true, ref: 'User' },
     isActive: { type: Boolean, default: true }
@@ -16,7 +15,7 @@ export const FollowerSchema = new mongoose.Schema<Follower>(
  * Methods.
  */
  FollowerSchema.methods.getPublicData = function () {
-  const { id, followerUserId, followingUserId, isActive } = this;
-  return { id, followerUserId, followingUserId, isActive };
+  const { _id, followerUserId, followingUserId, isActive } = this;
+  return { _id, followerUserId, followingUserId, isActive };
 };
  

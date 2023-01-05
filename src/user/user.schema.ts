@@ -4,7 +4,6 @@ import {User} from "./user.interface";
 
 export const UserSchema = new mongoose.Schema<User>(
   {
-    id: { type: String, requried: true },
     name: { type: String, requried: true },
     bio: { type: String },
     isCreator: { type: Boolean, default: false },
@@ -14,7 +13,7 @@ export const UserSchema = new mongoose.Schema<User>(
        snapchat: {type: String}
     },
     phoneNo: {type: String},
-    provider: {type: String},
+    provider: {type: String, default: "email"},
     profilePicture: {type: String},
     coverPicture: {type: String},
     email: {type: String, required: true, unique: true},
@@ -32,6 +31,6 @@ export const UserSchema = new mongoose.Schema<User>(
  * Methods.
  */
 UserSchema.methods.getPublicData = function () {
-  const {id, name, bio, isCreator, socialLinks, phoneNo, provider, profilePicture, coverPicture, email, isActive} = this;
-  return {id, name, bio, isCreator, socialLinks, phoneNo, provider, profilePicture, coverPicture, email, isActive};
+  const {_id, name, bio, isCreator, socialLinks, phoneNo, provider, profilePicture, coverPicture, email, isActive} = this;
+  return {_id, name, bio, isCreator, socialLinks, phoneNo, provider, profilePicture, coverPicture, email, isActive};
 };

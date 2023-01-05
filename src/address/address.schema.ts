@@ -5,7 +5,6 @@ import { Address } from "./address.interface";
 export const AddressSchema = new mongoose.Schema<Address>(
   {
     userId: { type: String, required: true, unique: true, ref: 'User' },
-    id: { type: String, requried: true },
     pinCode: { type: String, requried: true },
     city: { type: String, requried: true },
     state: { type: String, requried: true },
@@ -25,6 +24,6 @@ export const AddressSchema = new mongoose.Schema<Address>(
  * Methods.
  */
 AddressSchema.methods.getPublicData = function () {
-  const { userId, id, pinCode, city, state, address, name, phoneNo, isDefault, isActive} = this;
-  return { userId, id, pinCode, city, state, address, name, phoneNo, isDefault, isActive };
+  const { userId, _id, pinCode, city, state, address, name, phoneNo, isDefault, isActive} = this;
+  return { userId, _id, pinCode, city, state, address, name, phoneNo, isDefault, isActive };
 };
