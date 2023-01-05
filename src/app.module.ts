@@ -10,6 +10,7 @@ import {GlobalAccessLogger} from "./common/accessLogger";
 import {AuthModule} from "./auth/auth.module";
 import {UserModule} from "./user/user.module";
 import config from "./config";
+import { AddressModule } from "./address/address.module";
 
 const DEV_TRANSPORTER = {
   host: "smtp.ethereal.email",
@@ -34,6 +35,7 @@ const DEV_TRANSPORTER = {
       }),
     }),
     UserModule,
+    AddressModule
   ],
   providers: config.isTest() ? undefined : [GlobalAccessLogger],
 })
