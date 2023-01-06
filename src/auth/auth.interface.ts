@@ -4,6 +4,7 @@ import {
   MaxLength,
   IsUUID,
   IsNotEmpty,
+  IsOptional,
 } from "class-validator";
 import {ApiProperty} from "@nestjs/swagger";
 
@@ -19,6 +20,21 @@ export class ActivateParams {
   readonly activationToken!: string;
 }
 
+export class SocialLinks {
+  @ApiProperty({example: "facebook"})
+  @IsOptional()
+  readonly facebook!: string;
+
+  @ApiProperty({example: "instagram"})
+  @IsOptional()
+  readonly instagram!: string;
+
+  @ApiProperty({example: "snapchat"})
+  @IsOptional()
+  readonly snapchat!: string;
+}
+
+
 export class SignUpDto {
   @ApiProperty({example: "email@email.com", maxLength: 255})
   @IsEmail()
@@ -28,6 +44,42 @@ export class SignUpDto {
   @ApiProperty({example: "password", minLength: 8})
   @MinLength(8)
   readonly password!: string;
+
+  @ApiProperty({example: "name", minLength: 2})
+  @MinLength(2)
+  readonly name!: string;
+
+  @ApiProperty({example: "bio"})
+  @IsOptional()
+  readonly bio!: string;
+
+  @ApiProperty({example: false })
+  @IsOptional()
+  readonly isCreator!: boolean;
+
+  @ApiProperty({example: {
+    instagram: "link",
+    facebook: "link",
+    snapchat: "link"
+  } })
+  @IsOptional()
+  readonly socialLinks!: SocialLinks;
+
+  @ApiProperty({example: "phoneNo" })
+  @IsOptional()
+  readonly phoneNo!: string;
+
+  @ApiProperty({example: "email" })
+  @IsOptional()
+  readonly provider!: string;
+
+  @ApiProperty({example: "link" })
+  @IsOptional()
+  readonly profilePicture!: string;
+
+  @ApiProperty({example: "link" })
+  @IsOptional()
+  readonly coverPicture!: string;
 }
 
 export class LoginDto {
