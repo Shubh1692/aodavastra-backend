@@ -4,7 +4,7 @@ import { Post, PostType } from "./post.interface";
 
 export const PostSchema = new mongoose.Schema<Post>(
   {
-    userId: { type: String, required: true, unique: true, ref: 'User' },
+    userId: { type: String, required: true, ref: 'User' },
     images: [{type: String}],
     tagPeople: [{type: String}],
     tagProduct: [{type: String}],

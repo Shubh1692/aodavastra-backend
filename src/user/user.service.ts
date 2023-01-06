@@ -14,7 +14,6 @@ import {
 
 import { User } from "./user.interface";
 import { UserMailerService } from "./user.mailer.service";
-import { PartialRight } from "lodash";
 
 @Injectable()
 export class UserService {

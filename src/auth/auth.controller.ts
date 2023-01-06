@@ -19,8 +19,8 @@ import {
 } from "./auth.interface";
 import {AuthService} from "./auth.service";
 import {getOriginHeader} from "../common/auth";
-import {ApiTags} from "@nestjs/swagger";
-import { User } from "src/user/user.interface";
+import {ApiBearerAuth, ApiTags} from "@nestjs/swagger";
+import { User } from "../user/user.interface";
 
 @ApiTags("auth")
 @Controller("user")
@@ -46,6 +46,7 @@ export class AuthController {
 
   @UseGuards(AuthGuard())
   @Get("me")
+  @ApiBearerAuth('JWT-auth')
   getProfile(@Req() req: Request) {
     return req.user;
   }

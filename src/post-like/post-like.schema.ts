@@ -4,13 +4,13 @@ import { PostLike } from "./post-like.interface";
 
 export const PostLikeSchema = new mongoose.Schema<PostLike>(
   {
-    userId: { type: String, required: true, unique: true, ref: 'User' },
-    postId: { type: String, required: true, unique: true, ref: 'Post' },
+    userId: { type: String, required: true, ref: 'User' },
+    postId: { type: String, required: true, ref: 'Post' },
     isActive: { type: Boolean, default: true }
   },
   { timestamps: true },
 );
-
+PostLikeSchema.index({ "userId": 1, "postId": 1}, { "unique": true });
 /**
  * Methods.
  */
@@ -18,3 +18,4 @@ export const PostLikeSchema = new mongoose.Schema<PostLike>(
   const { userId, _id, postId, isActive} = this;
   return { userId, _id, postId, isActive};
 };
+
