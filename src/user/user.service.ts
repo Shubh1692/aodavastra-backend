@@ -25,7 +25,7 @@ export class UserService {
    * Creates user and sends activation email.
    * @throws duplicate key error when
    */
-  async create(email: string, password: string, origin: string, userData: Partial<User>): Promise<User> {
+  async create(email: string, password: string, userData: Partial<User>): Promise<User> {
     try {
       const user = await this.userModel.create({
         ...userData,
@@ -101,7 +101,7 @@ export class UserService {
     return user;
   }
 
-  async forgottenPassword(email: string, origin: string) {
+  async forgottenPassword(email: string) {
     const user = await this.userModel.findOneAndUpdate(
       {
         email: email.toLowerCase(),
@@ -122,8 +122,7 @@ export class UserService {
 
     this.userMailer.sendForgottenPasswordMail(
       user.email,
-      user.passwordResetToken,
-      origin,
+      user.passwordResetToken
     );
   }
 

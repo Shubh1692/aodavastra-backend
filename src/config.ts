@@ -24,6 +24,7 @@ export default {
   static: {
     maxAge: isProd() ? "1d" : 0,
   },
+  websiteUrl: process.env.WEBSITE_URL || ''
 };
 
 function isDev() {
