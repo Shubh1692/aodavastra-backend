@@ -92,15 +92,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-sdk/client-cognito-identity@npm:3.241.0":
-  version: 3.241.0
-  resolution: "@aws-sdk/client-cognito-identity@npm:3.241.0"
+"@aws-sdk/client-cognito-identity@npm:3.245.0":
+  version: 3.245.0
+  resolution: "@aws-sdk/client-cognito-identity@npm:3.245.0"
   dependencies:
     "@aws-crypto/sha256-browser": 2.0.0
     "@aws-crypto/sha256-js": 2.0.0
-    "@aws-sdk/client-sts": 3.241.0
+    "@aws-sdk/client-sts": 3.245.0
     "@aws-sdk/config-resolver": 3.234.0
-    "@aws-sdk/credential-provider-node": 3.241.0
+    "@aws-sdk/credential-provider-node": 3.245.0
     "@aws-sdk/fetch-http-handler": 3.226.0
     "@aws-sdk/hash-node": 3.226.0
     "@aws-sdk/invalid-dependency": 3.226.0
@@ -125,20 +125,20 @@ __metadata:
     "@aws-sdk/util-body-length-node": 3.208.0
     "@aws-sdk/util-defaults-mode-browser": 3.234.0
     "@aws-sdk/util-defaults-mode-node": 3.234.0
-    "@aws-sdk/util-endpoints": 3.241.0
+    "@aws-sdk/util-endpoints": 3.245.0
     "@aws-sdk/util-retry": 3.229.0
     "@aws-sdk/util-user-agent-browser": 3.226.0
     "@aws-sdk/util-user-agent-node": 3.226.0
     "@aws-sdk/util-utf8-browser": 3.188.0
     "@aws-sdk/util-utf8-node": 3.208.0
     tslib: ^2.3.1
-  checksum: 6523a2d30ab0a234311eee5f16b20a21e0def89da53a53713caf66f1b502b56b9e40c8f5cd4180ffe4049756e7b3d939fbc35d34da0fbe6ef954a190ce3a579a
+  checksum: 4142ba1b7a3c11f785d5da527a743d6a9352f6f97ae983e6f3ee0abf5a1cd755c2196981cbc2f6052686bf820a68f062117c682a5126e55acaacebc5cab862e6
   languageName: node
   linkType: hard
 
-"@aws-sdk/client-sso-oidc@npm:3.241.0":
-  version: 3.241.0
-  resolution: "@aws-sdk/client-sso-oidc@npm:3.241.0"
+"@aws-sdk/client-sso-oidc@npm:3.245.0":
+  version: 3.245.0
+  resolution: "@aws-sdk/client-sso-oidc@npm:3.245.0"
   dependencies:
     "@aws-crypto/sha256-browser": 2.0.0
     "@aws-crypto/sha256-js": 2.0.0
@@ -166,20 +166,20 @@ __metadata:
     "@aws-sdk/util-body-length-node": 3.208.0
     "@aws-sdk/util-defaults-mode-browser": 3.234.0
     "@aws-sdk/util-defaults-mode-node": 3.234.0
-    "@aws-sdk/util-endpoints": 3.241.0
+    "@aws-sdk/util-endpoints": 3.245.0
     "@aws-sdk/util-retry": 3.229.0
     "@aws-sdk/util-user-agent-browser": 3.226.0
     "@aws-sdk/util-user-agent-node": 3.226.0
     "@aws-sdk/util-utf8-browser": 3.188.0
     "@aws-sdk/util-utf8-node": 3.208.0
     tslib: ^2.3.1
-  checksum: e8a8a99f2234dd011f662a42c9e137bd8aa959db85644487560681aab102ee16b356c4ca8838529086b88e63384c0f7e105b3a1bcf05a7162e8cd1484e60b259
+  checksum: 6f72ee0df276f8c4019be4d9b3fa1b2cbab7744b13f434f07c9314303290334296be1148276266715ef3cfb37e83ced448fd9d6bb34d09bd21ed41d0a83598dc
   languageName: node
   linkType: hard
 
-"@aws-sdk/client-sso@npm:3.241.0":
-  version: 3.241.0
-  resolution: "@aws-sdk/client-sso@npm:3.241.0"
+"@aws-sdk/client-sso@npm:3.245.0":
+  version: 3.245.0
+  resolution: "@aws-sdk/client-sso@npm:3.245.0"
   dependencies:
     "@aws-crypto/sha256-browser": 2.0.0
     "@aws-crypto/sha256-js": 2.0.0
@@ -207,25 +207,25 @@ __metadata:
     "@aws-sdk/util-body-length-node": 3.208.0
     "@aws-sdk/util-defaults-mode-browser": 3.234.0
     "@aws-sdk/util-defaults-mode-node": 3.234.0
-    "@aws-sdk/util-endpoints": 3.241.0
+    "@aws-sdk/util-endpoints": 3.245.0
     "@aws-sdk/util-retry": 3.229.0
     "@aws-sdk/util-user-agent-browser": 3.226.0
     "@aws-sdk/util-user-agent-node": 3.226.0
     "@aws-sdk/util-utf8-browser": 3.188.0
     "@aws-sdk/util-utf8-node": 3.208.0
     tslib: ^2.3.1
-  checksum: 3c9e006aa7993a81b40c05e26ce57654db50bcbf4c10fe2a3e6f2a6ac806f631ba1784db5b1d33d4060d12a76331a98932bc1fab7ef1fe21578a56206015adab
+  checksum: e7dd235ee13465438a181c5de2f5bfc1acdaa12a07db74a3255dbb580004c33544d6773252b164dda2e2357ea83f3985afd060dfe42d6064732d36750764eda1
   languageName: node
   linkType: hard
 
-"@aws-sdk/client-sts@npm:3.241.0":
-  version: 3.241.0
-  resolution: "@aws-sdk/client-sts@npm:3.241.0"
+"@aws-sdk/client-sts@npm:3.245.0":
+  version: 3.245.0
+  resolution: "@aws-sdk/client-sts@npm:3.245.0"
   dependencies:
     "@aws-crypto/sha256-browser": 2.0.0
     "@aws-crypto/sha256-js": 2.0.0
     "@aws-sdk/config-resolver": 3.234.0
-    "@aws-sdk/credential-provider-node": 3.241.0
+    "@aws-sdk/credential-provider-node": 3.245.0
     "@aws-sdk/fetch-http-handler": 3.226.0
     "@aws-sdk/hash-node": 3.226.0
     "@aws-sdk/invalid-dependency": 3.226.0
@@ -251,7 +251,7 @@ __metadata:
     "@aws-sdk/util-body-length-node": 3.208.0
     "@aws-sdk/util-defaults-mode-browser": 3.234.0
     "@aws-sdk/util-defaults-mode-node": 3.234.0
-    "@aws-sdk/util-endpoints": 3.241.0
+    "@aws-sdk/util-endpoints": 3.245.0
     "@aws-sdk/util-retry": 3.229.0
     "@aws-sdk/util-user-agent-browser": 3.226.0
     "@aws-sdk/util-user-agent-node": 3.226.0
@@ -259,7 +259,7 @@ __metadata:
     "@aws-sdk/util-utf8-node": 3.208.0
     fast-xml-parser: 4.0.11
     tslib: ^2.3.1
-  checksum: 35dc5dd7950aa2f8ef2efe8674b25dc48a5108e1cb6299d66dc79a4ecb2d5905224ca7f26908a82650060cc3a11a7198c22e49879dfd3f1104c04d6b43f5ab1d
+  checksum: 3b052be86063978b47b2f4459062ea23a6d94c81951a97428a5445ff062d642a3460114cbf1b20d3925db0667d893db40cbe30b1b8b58a4d749c75d117aab460
   languageName: node
   linkType: hard
 
@@ -276,15 +276,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-sdk/credential-provider-cognito-identity@npm:3.241.0":
-  version: 3.241.0
-  resolution: "@aws-sdk/credential-provider-cognito-identity@npm:3.241.0"
+"@aws-sdk/credential-provider-cognito-identity@npm:3.245.0":
+  version: 3.245.0
+  resolution: "@aws-sdk/credential-provider-cognito-identity@npm:3.245.0"
   dependencies:
-    "@aws-sdk/client-cognito-identity": 3.241.0
+    "@aws-sdk/client-cognito-identity": 3.245.0
     "@aws-sdk/property-provider": 3.226.0
     "@aws-sdk/types": 3.226.0
     tslib: ^2.3.1
-  checksum: bd4c2600ddc20b69050e6f79ea95b255bced0c614e503945a0fa63adf5b0dfc1f4c43286d8b101e587f609317e409a041fabb4a277831e753852bd8ee8195b64
+  checksum: af9ce2a19426056139c380fa2a016d5abb42117e262dc5c3f4741eb1f2d15b394e9b178d6efb2e32f59cd723c6090da769975505368fbbe79b8eb9258c6961a8
   languageName: node
   linkType: hard
 
@@ -312,38 +312,38 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-sdk/credential-provider-ini@npm:3.241.0":
-  version: 3.241.0
-  resolution: "@aws-sdk/credential-provider-ini@npm:3.241.0"
+"@aws-sdk/credential-provider-ini@npm:3.245.0":
+  version: 3.245.0
+  resolution: "@aws-sdk/credential-provider-ini@npm:3.245.0"
   dependencies:
     "@aws-sdk/credential-provider-env": 3.226.0
     "@aws-sdk/credential-provider-imds": 3.226.0
     "@aws-sdk/credential-provider-process": 3.226.0
-    "@aws-sdk/credential-provider-sso": 3.241.0
+    "@aws-sdk/credential-provider-sso": 3.245.0
     "@aws-sdk/credential-provider-web-identity": 3.226.0
     "@aws-sdk/property-provider": 3.226.0
     "@aws-sdk/shared-ini-file-loader": 3.226.0
     "@aws-sdk/types": 3.226.0
     tslib: ^2.3.1
-  checksum: 532af26415644ebcef2c0714e6c894bb6e7d571abb4330a35e70b4d19c5f90ffd61f352f6d0e9cd58cef97b32946edf821d9fb82d0d6d0836f2dfbc5f280b56a
+  checksum: 35fcdb231efb573c60c25e67a27f64ca892ebab7931e715406826a4d3f87caecd525945f45ecaf7fb7e09a87a744678aba60249c74681160c9fb9d66c0490bf5
   languageName: node
   linkType: hard
 
-"@aws-sdk/credential-provider-node@npm:3.241.0":
-  version: 3.241.0
-  resolution: "@aws-sdk/credential-provider-node@npm:3.241.0"
+"@aws-sdk/credential-provider-node@npm:3.245.0":
+  version: 3.245.0
+  resolution: "@aws-sdk/credential-provider-node@npm:3.245.0"
   dependencies:
     "@aws-sdk/credential-provider-env": 3.226.0
     "@aws-sdk/credential-provider-imds": 3.226.0
-    "@aws-sdk/credential-provider-ini": 3.241.0
+    "@aws-sdk/credential-provider-ini": 3.245.0
     "@aws-sdk/credential-provider-process": 3.226.0
-    "@aws-sdk/credential-provider-sso": 3.241.0
+    "@aws-sdk/credential-provider-sso": 3.245.0
     "@aws-sdk/credential-provider-web-identity": 3.226.0
     "@aws-sdk/property-provider": 3.226.0
     "@aws-sdk/shared-ini-file-loader": 3.226.0
     "@aws-sdk/types": 3.226.0
     tslib: ^2.3.1
-  checksum: f485933f514ab2a14204a231a4bde77e22034329e90b4d797f18625bca8836462d19e7d88365380d57c8c80a3510bc135671da25457481a6f7cecba1ad4764e3
+  checksum: a9bd115016fc7ce7f2cb50c5cafcd759f861362bb9dd9629e4ea0056519d5b26ad256f6d1d84ef3327c75bef442de8c0e4b54b215870512b43c92866ed0f1403
   languageName: node
   linkType: hard
 
@@ -359,17 +359,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-sdk/credential-provider-sso@npm:3.241.0":
-  version: 3.241.0
-  resolution: "@aws-sdk/credential-provider-sso@npm:3.241.0"
+"@aws-sdk/credential-provider-sso@npm:3.245.0":
+  version: 3.245.0
+  resolution: "@aws-sdk/credential-provider-sso@npm:3.245.0"
   dependencies:
-    "@aws-sdk/client-sso": 3.241.0
+    "@aws-sdk/client-sso": 3.245.0
     "@aws-sdk/property-provider": 3.226.0
     "@aws-sdk/shared-ini-file-loader": 3.226.0
-    "@aws-sdk/token-providers": 3.241.0
+    "@aws-sdk/token-providers": 3.245.0
     "@aws-sdk/types": 3.226.0
     tslib: ^2.3.1
-  checksum: 7e7e45024788e27c09f4885a402b7ae4c2e72a01accb6117f44474a9d89bd00c75df42f6060252747ba9415a77046b47c5c38015564bea8f1240bbaf8bb959df
+  checksum: 95358504631d5451520d5090e7fb337b40dfc12ab30dd84d979165d881f2762798828003b13adcb35921223bf3a498b0e70b7a94ebc14e8b16a4f0adacded8f1
   languageName: node
   linkType: hard
 
@@ -385,25 +385,25 @@ __metadata:
   linkType: hard
 
 "@aws-sdk/credential-providers@npm:^3.186.0":
-  version: 3.241.0
-  resolution: "@aws-sdk/credential-providers@npm:3.241.0"
+  version: 3.245.0
+  resolution: "@aws-sdk/credential-providers@npm:3.245.0"
   dependencies:
-    "@aws-sdk/client-cognito-identity": 3.241.0
-    "@aws-sdk/client-sso": 3.241.0
-    "@aws-sdk/client-sts": 3.241.0
-    "@aws-sdk/credential-provider-cognito-identity": 3.241.0
+    "@aws-sdk/client-cognito-identity": 3.245.0
+    "@aws-sdk/client-sso": 3.245.0
+    "@aws-sdk/client-sts": 3.245.0
+    "@aws-sdk/credential-provider-cognito-identity": 3.245.0
     "@aws-sdk/credential-provider-env": 3.226.0
     "@aws-sdk/credential-provider-imds": 3.226.0
-    "@aws-sdk/credential-provider-ini": 3.241.0
-    "@aws-sdk/credential-provider-node": 3.241.0
+    "@aws-sdk/credential-provider-ini": 3.245.0
+    "@aws-sdk/credential-provider-node": 3.245.0
     "@aws-sdk/credential-provider-process": 3.226.0
-    "@aws-sdk/credential-provider-sso": 3.241.0
+    "@aws-sdk/credential-provider-sso": 3.245.0
     "@aws-sdk/credential-provider-web-identity": 3.226.0
     "@aws-sdk/property-provider": 3.226.0
     "@aws-sdk/shared-ini-file-loader": 3.226.0
     "@aws-sdk/types": 3.226.0
     tslib: ^2.3.1
-  checksum: a3425f193c651066138682efcecf55bc6bef74c18bcac0a76e1ce177615a0936b76052263695454f4a04b8207e184a23c5cf407ab38161ccf96d560168138557
+  checksum: a6923907ce97232cf87565e5fc0dac872061d2f065f530f7c91d1693472dd26667a91a662283994b3886a84b557f45e8627d0c847a88ffa0fdf2458a0180bd43
   languageName: node
   linkType: hard
 
@@ -690,16 +690,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-sdk/token-providers@npm:3.241.0":
-  version: 3.241.0
-  resolution: "@aws-sdk/token-providers@npm:3.241.0"
+"@aws-sdk/token-providers@npm:3.245.0":
+  version: 3.245.0
+  resolution: "@aws-sdk/token-providers@npm:3.245.0"
   dependencies:
-    "@aws-sdk/client-sso-oidc": 3.241.0
+    "@aws-sdk/client-sso-oidc": 3.245.0
     "@aws-sdk/property-provider": 3.226.0
     "@aws-sdk/shared-ini-file-loader": 3.226.0
     "@aws-sdk/types": 3.226.0
     tslib: ^2.3.1
-  checksum: 7897380a0bf8790b66e17633a6b510785876193f3bd481773afd7179ebbd0ec6849ec88ea873f9ee634fca55fac49f881bddc09133c380f2113eb5d67761c31d
+  checksum: 900a73b999c50eb35b3eda594210448329f5068b57a2d8d57ee8e4f3d960116ece36952ca1fbe43b5e8e9119927de916033f73ff969bae3a8394d4ef98f1d0c7
   languageName: node
   linkType: hard
 
@@ -796,13 +796,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-sdk/util-endpoints@npm:3.241.0":
-  version: 3.241.0
-  resolution: "@aws-sdk/util-endpoints@npm:3.241.0"
+"@aws-sdk/util-endpoints@npm:3.245.0":
+  version: 3.245.0
+  resolution: "@aws-sdk/util-endpoints@npm:3.245.0"
   dependencies:
     "@aws-sdk/types": 3.226.0
     tslib: ^2.3.1
-  checksum: d4743ef1a2cd2128f33da61466f9749b9e43bdee1bc01ffaead6839571506e559936f6a82192dcdce65553841f7c74ed8a9ba219e0331fbd783af012711b341b
+  checksum: 22783fb178e8901385b20b0d19b944ad41297cc19f0561ac1722e86757ca6910fd3766626a0493372f718a0726bef920a5b39cc41fdceb1012f14e833541041b
   languageName: node
   linkType: hard
 
@@ -2687,6 +2687,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"available-typed-arrays@npm:^1.0.5":
+  version: 1.0.5
+  resolution: "available-typed-arrays@npm:1.0.5"
+  checksum: 20eb47b3cefd7db027b9bbb993c658abd36d4edd3fe1060e83699a03ee275b0c9b216cc076ff3f2db29073225fb70e7613987af14269ac1fe2a19803ccc97f1a
+  languageName: node
+  linkType: hard
+
 "aws-sign2@npm:~0.7.0":
   version: 0.7.0
   resolution: "aws-sign2@npm:0.7.0"
@@ -3012,11 +3019,11 @@ __metadata:
   linkType: hard
 
 "bson@npm:^4.6.2, bson@npm:^4.6.3, bson@npm:^4.7.0":
-  version: 4.7.0
-  resolution: "bson@npm:4.7.0"
+  version: 4.7.1
+  resolution: "bson@npm:4.7.1"
   dependencies:
     buffer: ^5.6.0
-  checksum: 83e7b64afdad5a505073a7e6206e7b345f59e7888fbcb1948fba72b6101a1baf58b7499314f8e24b650567665f7973eda048aabbb1ddcfbadfba7d6c6b0f5e83
+  checksum: 546aaf322e42514e0c48c875ad6ffafc66458c83fea0fb89e9e3002ba040b7d95ab40e63eca7f997d1f9d4e92cd02af259ba761799bf04aafc3a857e12d147c4
   languageName: node
   linkType: hard
 
@@ -3180,9 +3187,9 @@ __metadata:
   linkType: hard
 
 "caniuse-lite@npm:^1.0.30001400":
-  version: 1.0.30001441
-  resolution: "caniuse-lite@npm:1.0.30001441"
-  checksum: 0f5aa8f7ea4d165e88e0d1eaa44564c5bfee66641f265a1fd959e74f0a7e6bc0207db6c28e2fb63dc8b2cd23e0e3cee06c4f372de11c93c57ff5ff4207962c3f
+  version: 1.0.30001442
+  resolution: "caniuse-lite@npm:1.0.30001442"
+  checksum: c1bff65bd4f53da2d288e7f55be40706ee0119b983eae5a9dcc884046990476891630aef72d708f7989f8f1964200c44e4c37ea40deecaa2fb4a480df23e6317
   languageName: node
   linkType: hard
 
@@ -4115,25 +4122,30 @@ __metadata:
   linkType: hard
 
 "es-abstract@npm:^1.19.0, es-abstract@npm:^1.20.4":
-  version: 1.20.5
-  resolution: "es-abstract@npm:1.20.5"
+  version: 1.21.0
+  resolution: "es-abstract@npm:1.21.0"
   dependencies:
     call-bind: ^1.0.2
+    es-set-tostringtag: ^2.0.0
     es-to-primitive: ^1.2.1
     function-bind: ^1.1.1
     function.prototype.name: ^1.1.5
     get-intrinsic: ^1.1.3
     get-symbol-description: ^1.0.0
+    globalthis: ^1.0.3
     gopd: ^1.0.1
     has: ^1.0.3
     has-property-descriptors: ^1.0.0
+    has-proto: ^1.0.1
     has-symbols: ^1.0.3
-    internal-slot: ^1.0.3
+    internal-slot: ^1.0.4
+    is-array-buffer: ^3.0.0
     is-callable: ^1.2.7
     is-negative-zero: ^2.0.2
     is-regex: ^1.1.4
     is-shared-array-buffer: ^1.0.2
     is-string: ^1.0.7
+    is-typed-array: ^1.1.10
     is-weakref: ^1.0.2
     object-inspect: ^1.12.2
     object-keys: ^1.1.1
@@ -4142,8 +4154,10 @@ __metadata:
     safe-regex-test: ^1.0.0
     string.prototype.trimend: ^1.0.6
     string.prototype.trimstart: ^1.0.6
+    typed-array-length: ^1.0.4
     unbox-primitive: ^1.0.2
-  checksum: 00564779ddaf7fb977ab5aa2b8ea2cbd4fa2335ad5368f788bd0bb094c86bc1790335dd9c3e30374bb0af2fa54c724fb4e0c73659dcfe8e427355a56f2b65946
+    which-typed-array: ^1.1.9
+  checksum: 52305b52aff6505c9d8cebfa727835dd8871af76de151868d1db7baf6d21f13a81586316ac513601eec9b46e2947cab044fc2a131db68bfa05daf37aa153dbd9
   languageName: node
   linkType: hard
 
@@ -4151,6 +4165,17 @@ __metadata:
   version: 1.0.0
   resolution: "es-array-method-boxes-properly@npm:1.0.0"
   checksum: 2537fcd1cecf187083890bc6f5236d3a26bf39237433587e5bf63392e88faae929dbba78ff0120681a3f6f81c23fe3816122982c160d63b38c95c830b633b826
+  languageName: node
+  linkType: hard
+
+"es-set-tostringtag@npm:^2.0.0":
+  version: 2.0.1
+  resolution: "es-set-tostringtag@npm:2.0.1"
+  dependencies:
+    get-intrinsic: ^1.1.3
+    has: ^1.0.3
+    has-tostringtag: ^1.0.0
+  checksum: ec416a12948cefb4b2a5932e62093a7cf36ddc3efd58d6c58ca7ae7064475ace556434b869b0bbeb0c365f1032a8ccd577211101234b69837ad83ad204fff884
   languageName: node
   linkType: hard
 
@@ -5089,6 +5114,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"globalthis@npm:^1.0.3":
+  version: 1.0.3
+  resolution: "globalthis@npm:1.0.3"
+  dependencies:
+    define-properties: ^1.1.3
+  checksum: fbd7d760dc464c886d0196166d92e5ffb4c84d0730846d6621a39fbbc068aeeb9c8d1421ad330e94b7bca4bb4ea092f5f21f3d36077812af5d098b4dc006c998
+  languageName: node
+  linkType: hard
+
 "globby@npm:^11.0.4":
   version: 11.1.0
   resolution: "globby@npm:11.1.0"
@@ -5188,6 +5222,13 @@ __metadata:
   dependencies:
     get-intrinsic: ^1.1.1
   checksum: a6d3f0a266d0294d972e354782e872e2fe1b6495b321e6ef678c9b7a06a40408a6891817350c62e752adced73a94ac903c54734fee05bf65b1905ee1368194bb
+  languageName: node
+  linkType: hard
+
+"has-proto@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "has-proto@npm:1.0.1"
+  checksum: febc5b5b531de8022806ad7407935e2135f1cc9e64636c3916c6842bd7995994ca3b29871ecd7954bd35f9e2986c17b3b227880484d22259e2f8e6ce63fd383e
   languageName: node
   linkType: hard
 
@@ -5514,7 +5555,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"internal-slot@npm:^1.0.3":
+"internal-slot@npm:^1.0.4":
   version: 1.0.4
   resolution: "internal-slot@npm:1.0.4"
   dependencies:
@@ -5570,6 +5611,17 @@ __metadata:
   dependencies:
     kind-of: ^6.0.0
   checksum: 8e475968e9b22f9849343c25854fa24492dbe8ba0dea1a818978f9f1b887339190b022c9300d08c47fe36f1b913d70ce8cbaca00369c55a56705fdb7caed37fe
+  languageName: node
+  linkType: hard
+
+"is-array-buffer@npm:^3.0.0":
+  version: 3.0.1
+  resolution: "is-array-buffer@npm:3.0.1"
+  dependencies:
+    call-bind: ^1.0.2
+    get-intrinsic: ^1.1.3
+    is-typed-array: ^1.1.10
+  checksum: f26ab87448e698285daf707e52a533920449f7abf63714140ffab9d5571aa5a71ac2fa2677e8b793ad0d5d3e40078d4d2c8a0ab39c957e3cfc6513bb6c9dfdc9
   languageName: node
   linkType: hard
 
@@ -5841,6 +5893,19 @@ __metadata:
   dependencies:
     has-symbols: ^1.0.2
   checksum: 92805812ef590738d9de49d677cd17dfd486794773fb6fa0032d16452af46e9b91bb43ffe82c983570f015b37136f4b53b28b8523bfb10b0ece7a66c31a54510
+  languageName: node
+  linkType: hard
+
+"is-typed-array@npm:^1.1.10, is-typed-array@npm:^1.1.9":
+  version: 1.1.10
+  resolution: "is-typed-array@npm:1.1.10"
+  dependencies:
+    available-typed-arrays: ^1.0.5
+    call-bind: ^1.0.2
+    for-each: ^0.3.3
+    gopd: ^1.0.1
+    has-tostringtag: ^1.0.0
+  checksum: aac6ecb59d4c56a1cdeb69b1f129154ef462bbffe434cb8a8235ca89b42f258b7ae94073c41b3cb7bce37f6a1733ad4499f07882d5d5093a7ba84dfc4ebb8017
   languageName: node
   linkType: hard
 
@@ -6708,9 +6773,9 @@ __metadata:
   linkType: hard
 
 "libphonenumber-js@npm:^1.9.43":
-  version: 1.10.15
-  resolution: "libphonenumber-js@npm:1.10.15"
-  checksum: 94283206159b9eaf07e4af9c002dda2b0b171099a8116baa0b6871f6312475112ec92121cca85916968fa9fb1220641205f6ee2349a1cc33197d811a69572198
+  version: 1.10.16
+  resolution: "libphonenumber-js@npm:1.10.16"
+  checksum: 63b5ae8b2b2177ed5c72109323fc5bf28f57077b12c104454684cdd2c49f2a90bb6ff0c36eff6a892d855af18fc404fea0e1742e2f8882cdea6b2fda9eeeceeb
   languageName: node
   linkType: hard
 
@@ -10280,6 +10345,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"typed-array-length@npm:^1.0.4":
+  version: 1.0.4
+  resolution: "typed-array-length@npm:1.0.4"
+  dependencies:
+    call-bind: ^1.0.2
+    for-each: ^0.3.3
+    is-typed-array: ^1.1.9
+  checksum: 2228febc93c7feff142b8c96a58d4a0d7623ecde6c7a24b2b98eb3170e99f7c7eff8c114f9b283085cd59dcd2bd43aadf20e25bba4b034a53c5bb292f71f8956
+  languageName: node
+  linkType: hard
+
 "typedarray@npm:^0.0.6":
   version: 0.0.6
   resolution: "typedarray@npm:0.0.6"
@@ -10650,6 +10726,20 @@ __metadata:
   version: 2.0.0
   resolution: "which-module@npm:2.0.0"
   checksum: 809f7fd3dfcb2cdbe0180b60d68100c88785084f8f9492b0998c051d7a8efe56784492609d3f09ac161635b78ea29219eb1418a98c15ce87d085bce905705c9c
+  languageName: node
+  linkType: hard
+
+"which-typed-array@npm:^1.1.9":
+  version: 1.1.9
+  resolution: "which-typed-array@npm:1.1.9"
+  dependencies:
+    available-typed-arrays: ^1.0.5
+    call-bind: ^1.0.2
+    for-each: ^0.3.3
+    gopd: ^1.0.1
+    has-tostringtag: ^1.0.0
+    is-typed-array: ^1.1.10
+  checksum: fe0178ca44c57699ca2c0e657b64eaa8d2db2372a4e2851184f568f98c478ae3dc3fdb5f7e46c384487046b0cf9e23241423242b277e03e8ba3dabc7c84c98ef
   languageName: node
   linkType: hard
 

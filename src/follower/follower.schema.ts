@@ -4,13 +4,13 @@ import { Follower } from "./follower.interface";
 
 export const FollowerSchema = new mongoose.Schema<Follower>(
   {
-    followerUserId: { type: String, required: true, unique: true, ref: 'User' },
-    followingUserId: { type: String, required: true, unique: true, ref: 'User' },
+    followerUserId: { type: String, required: true, ref: 'User' },
+    followingUserId: { type: String, required: true, ref: 'User' },
     isActive: { type: Boolean, default: true }
   },
   { timestamps: true },
 );
-
+FollowerSchema.index({ "followerUserId": 1, "followingUserId": 1}, { "unique": true });
 /**
  * Methods.
  */
