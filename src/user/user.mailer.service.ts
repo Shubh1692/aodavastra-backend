@@ -11,7 +11,7 @@ export class UserMailerService {
     email: string,
     userId: string,
     activationToken: string,
-    origin: string,
+    origin: string = config.websiteUrl,
   ) {
     if (!config.isTest()) {
       this.mailerService
@@ -28,7 +28,7 @@ ${origin}/activate/${userId}/${activationToken}\n`,
   sendForgottenPasswordMail(
     to: string,
     passwordResetToken: string,
-    origin: string,
+    origin: string = config.websiteUrl,
   ) {
     if (!config.isTest()) {
       this.mailerService

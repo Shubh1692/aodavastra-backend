@@ -18,7 +18,6 @@ import {
   LoginDto,
 } from "./auth.interface";
 import {AuthService} from "./auth.service";
-import {getOriginHeader} from "../common/auth";
 import {ApiBearerAuth, ApiTags} from "@nestjs/swagger";
 import { User } from "../user/user.interface";
 
@@ -41,7 +40,7 @@ export class AuthController {
 
   @Post("signup")
   async signup(@Body() signUpDto: SignUpDto, @Req() req: Request) {
-    return this.authService.signUpUser(signUpDto, getOriginHeader(req));
+    return this.authService.signUpUser(signUpDto);
   }
 
   @UseGuards(AuthGuard())
@@ -59,7 +58,7 @@ export class AuthController {
 
   @Post("forgotten-password")
   forgottenPassword(@Body() body: ForgottenPasswordDto, @Req() req: Request) {
-    return this.authService.forgottenPassword(body, getOriginHeader(req));
+    return this.authService.forgottenPassword(body);
   }
 
   @Post("reset-password")

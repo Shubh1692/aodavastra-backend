@@ -45,11 +45,10 @@ export class AuthService {
     };
   }
 
-  async signUpUser(userData: SignUpDto, origin: string) {
+  async signUpUser(userData: SignUpDto) {
     const user = await this.userService.create(
       userData.email,
       userData.password,
-      origin,
       userData
     );
 
@@ -59,8 +58,8 @@ export class AuthService {
     };
   }
 
-  async forgottenPassword({email}: ForgottenPasswordDto, origin: string) {
-    return await this.userService.forgottenPassword(email, origin);
+  async forgottenPassword({email}: ForgottenPasswordDto) {
+    return await this.userService.forgottenPassword(email);
   }
 
   async resetPassword({email, passwordResetToken, password}: ResetPasswordDto) {
