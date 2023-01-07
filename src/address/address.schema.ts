@@ -14,7 +14,7 @@ export const AddressSchema = new mongoose.Schema<Address>(
     },
     name: { type: String },
     phoneNo: { type: String },
-    isDefault: { type: String, requried: true, default: false },
+    isDefault: { type: Boolean, requried: true, default: false },
     isActive: { type: Boolean, default: true }
   },
   { timestamps: true },
