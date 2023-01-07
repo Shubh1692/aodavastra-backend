@@ -3,10 +3,11 @@ import {
   NotFoundException,
   ForbiddenException,
   UnauthorizedException,
+  BadRequestException
 } from "@nestjs/common";
 
 export const EmailAlreadyUsedException = () =>
-  new ConflictException("Email already in use.");
+  new BadRequestException("Email already in use.");
 
 export const UserNotFoundException = () =>
   new NotFoundException("Requested user does not exist.");
@@ -21,4 +22,4 @@ export const LoginCredentialsException = () =>
   new UnauthorizedException("Login credentials are wrong.");
 
 export const ErrorMessageException = (message: string) =>
-  new ConflictException(message);
+  new BadRequestException(message);
