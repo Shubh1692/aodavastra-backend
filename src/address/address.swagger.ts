@@ -10,7 +10,6 @@ export default setupSwaggerDocument(
     .setVersion("1.0")
     .setBasePath("api")
     .addTag("address")
-    .addTag("course")
     .addBearerAuth(
       {
         type: 'http',

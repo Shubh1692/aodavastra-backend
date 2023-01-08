@@ -10,7 +10,7 @@ export default {
   },
   cors: {
     // https://github.com/expressjs/cors#configuration-options
-    origin: process.env.CORS_ORIGIN,
+    origin: '*',
     methods: "POST,GET,PUT,OPTIONS,DELETE",
     allowedHeaders:
       "Timezone-Offset,Origin,X-Requested-With,Content-Type,Accept,Authorization",
@@ -24,7 +24,8 @@ export default {
   static: {
     maxAge: isProd() ? "1d" : 0,
   },
-  websiteUrl: process.env.WEBSITE_URL || ''
+  websiteUrl: process.env.WEBSITE_URL || '',
+  apiUrl: process.env.API_URL || ''
 };
 
 function isDev() {
