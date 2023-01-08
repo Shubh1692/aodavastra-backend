@@ -10,6 +10,7 @@ import {LocalStrategy} from "./local.strategy";
 import {JwtStrategy} from "./jwt.strategy";
 import {AuthController} from "./auth.controller";
 import setupSwagger from "./auth.swagger";
+import { FileUploadService } from "../common/services/upload.service";
 
 @Module({
   imports: [
@@ -20,7 +21,7 @@ import setupSwagger from "./auth.swagger";
       signOptions: {expiresIn: config.auth.jwtTokenExpireInSec},
     }),
   ],
-  providers: [AuthService, LocalStrategy, JwtStrategy],
+  providers: [AuthService, LocalStrategy, JwtStrategy, FileUploadService],
   controllers: [AuthController],
   exports: [AuthService],
 })

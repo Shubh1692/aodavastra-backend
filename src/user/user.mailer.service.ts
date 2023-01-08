@@ -11,7 +11,7 @@ export class UserMailerService {
     email: string,
     userId: string,
     activationToken: string,
-    origin: string = config.websiteUrl,
+    origin: string = config.apiUrl,
   ) {
     if (!config.isTest()) {
       this.mailerService
@@ -19,7 +19,7 @@ export class UserMailerService {
           to: email,
           subject: "Activate your account",
           text: `Please click on the following link, or paste this into your browser to activate your account:\n
-${origin}/activate/${userId}/${activationToken}\n`,
+${origin}/user/activate/${userId}/${activationToken}\n`,
         })
         .catch();
     }
@@ -37,7 +37,7 @@ ${origin}/activate/${userId}/${activationToken}\n`,
           subject: "Reset your password",
           text: `You are receiving this email because you (or someone else) have requested the reset of the password for your account.\n
 Please click on the following link, or paste this into your browser to complete the process:\n
-${origin}/auth/reset-password/${passwordResetToken}\n
+${origin}/password-reset-confirm/${passwordResetToken}/\n
 If you did not request this, please ignore this email and your password will remain unchanged.\n`,
         })
         .catch();

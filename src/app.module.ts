@@ -14,7 +14,8 @@ import { AddressModule } from "./address/address.module";
 import { FollowerModule } from "./follower/follower.module";
 import { PostModule } from "./post/post.module";
 import { PostLikeModule } from "./post-like/post-like.module";
-
+import { ServeStaticModule } from "@nestjs/serve-static";
+import { join } from 'path'; 
 
 const DEV_TRANSPORTER = {
   host: "smtp.ethereal.email",
@@ -43,6 +44,10 @@ const DEV_TRANSPORTER = {
     FollowerModule,
     PostModule,
     PostLikeModule,
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'uploads'),
+      serveRoot: '/uploads'
+    }),
   ],
   providers: config.isTest() ? undefined : [GlobalAccessLogger],
 })
@@ -50,6 +55,10 @@ export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     ServeStaticMiddleware.configure(
       path.resolve(__dirname, "..", "public"),
+      config.static,
+    );
+    ServeStaticMiddleware.configure(
+      path.resolve(__dirname, "..", "uploads"),
       config.static,
     );
     consumer.apply(ServeStaticMiddleware).forRoutes("public");

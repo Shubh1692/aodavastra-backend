@@ -1,10 +1,10 @@
-import { Model } from "mongoose";
-import { v4 as uuid } from "uuid";
-import { Injectable } from "@nestjs/common";
-import { InjectModel } from "@nestjs/mongoose";
+import {Model} from "mongoose";
+import {v4 as uuid} from "uuid";
+import {Injectable} from "@nestjs/common";
+import {InjectModel} from "@nestjs/mongoose";
 
 import config from "../config";
-import { hashPassword } from "../common/auth";
+import {hashPassword} from "../common/auth";
 import {
   UserNotFoundException,
   EmailAlreadyUsedException,
@@ -12,20 +12,24 @@ import {
   ActivationTokenInvalidException,
 } from "../common/exceptions";
 
-import { User } from "./user.interface";
-import { UserMailerService } from "./user.mailer.service";
+import {User} from "./user.interface";
+import {UserMailerService} from "./user.mailer.service";
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectModel("User") private readonly userModel: Model<User>,
     private readonly userMailer: UserMailerService,
-  ) { }
+  ) {}
   /**
    * Creates user and sends activation email.
    * @throws duplicate key error when
    */
-  async create(email: string, password: string, userData: Partial<User>): Promise<User> {
+  async create(
+    email: string,
+    password: string,
+    userData: Partial<User>,
+  ): Promise<User> {
     try {
       const user = await this.userModel.create({
         ...userData,
@@ -35,16 +39,14 @@ export class UserService {
         activationExpires: Date.now() + config.auth.activationExpireInMs,
       });
 
-      // this.userMailer.sendActivationMail(
-      //   user.email,
-      //   user.id,
-      //   user.activationToken,
-      //   origin,
-      // );
+      this.userMailer.sendActivationMail(
+        user.email,
+        user.id,
+        user.activationToken,
+      );
 
       return user;
-    } catch (error){
-     console.log("==========", error)
+    } catch (error) {
       throw EmailAlreadyUsedException();
     }
   }
@@ -61,7 +63,7 @@ export class UserService {
 
   async findByEmail(email: string): Promise<User> {
     const user = await this.userModel.findOne(
-      { email: email.toLowerCase() },
+      {email: email.toLowerCase()},
       "+password",
     );
 
@@ -97,7 +99,6 @@ export class UserService {
     if (!user) {
       throw ActivationTokenInvalidException();
     }
-
     return user;
   }
 
@@ -122,7 +123,7 @@ export class UserService {
 
     this.userMailer.sendForgottenPasswordMail(
       user.email,
-      user.passwordResetToken
+      user.passwordResetToken,
     );
   }
 
@@ -158,5 +159,41 @@ export class UserService {
     this.userMailer.sendResetPasswordMail(user.email);
 
     return user;
+  }
+
+  async update(id: string, updateDto: Partial<User>): Promise<User> {
+    try {
+      const oldUser = await this.userModel.findById(id);
+      const user = await this.userModel.findByIdAndUpdate(
+        id,
+        {
+          ...updateDto,
+          ...(oldUser?.email !== updateDto?.email
+            ? {
+                activationToken: uuid(),
+                activationExpires:
+                  Date.now() + config.auth.activationExpireInMs,
+              }
+            : {}),
+        },
+        {
+          new: true,
+          runValidators: true,
+        },
+      );
+      if (!user) {
+        throw UserNotFoundException();
+      }
+      if (oldUser?.email !== updateDto?.email) {
+        this.userMailer.sendActivationMail(
+          user.email,
+          user.id,
+          user.activationToken,
+        );
+      }
+      return user;
+    } catch (error) {
+      throw EmailAlreadyUsedException();
+    }
   }
 }
