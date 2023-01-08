@@ -59,3 +59,9 @@ This backend will play nicely with awesome [react-starter](https://github.com/Ka
 
 ## License
 MIT
+
+
+## Docker
+
+docker build -t svijay1692/modavastra .      
+docker run --name modavastra -p 80:3001 -d svijay1692/modavastra
