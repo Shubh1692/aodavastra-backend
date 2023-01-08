@@ -10,7 +10,7 @@ COPY .yarnrc.yml ./.yarnrc.yml
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
 COPY package*.json ./
 
-COPY .env.dev ./.env
+COPY .env.staging ./.env
 
 # Install app dependencies
 RUN yarn install
