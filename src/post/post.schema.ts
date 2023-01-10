@@ -19,6 +19,6 @@ export const PostSchema = new mongoose.Schema<Post>(
  * Methods.
  */
 PostSchema.methods.getPublicData = function () {
-  const { userId, _id, images, description, tagPeople, tagProduct, type, url, isActive } = this;
-  return { userId, _id, images, description, tagPeople, tagProduct, type, url, isActive };
+  const { userId, _id, images, commentIds, description, tagPeople, tagProduct, type, url, isActive } = this;
+  return { userId, _id, images, commentIds, description, tagPeople, tagProduct, type, url, isActive };
 };

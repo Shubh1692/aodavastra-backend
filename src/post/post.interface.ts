@@ -1,9 +1,23 @@
 import { Document } from "mongoose";
+import {
+    IsEmail,
+    MinLength,
+    MaxLength,
+    IsUUID,
+    IsString,
+    IsOptional,
+    IsBoolean,
+    IsNotEmpty,
+    IsObject,
+} from "class-validator";
+
 
 export enum PostType {
     IMAGE = 'image',
     VIDEO = 'video'
 }
+
+
 export type PostPublicData = Readonly<{
     id: string;
     userId: string;
@@ -35,3 +49,6 @@ export type Post = Readonly<{
 }> &
     PostMethods &
     Document;
+
+
+

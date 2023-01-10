@@ -14,6 +14,7 @@ import { AddressModule } from "./address/address.module";
 import { FollowerModule } from "./follower/follower.module";
 import { PostModule } from "./post/post.module";
 import { PostLikeModule } from "./post-like/post-like.module";
+import { CommentModule } from "./comment/comment.module";
 
 
 const DEV_TRANSPORTER = {
@@ -43,6 +44,7 @@ const DEV_TRANSPORTER = {
     FollowerModule,
     PostModule,
     PostLikeModule,
+    CommentModule 
   ],
   providers: config.isTest() ? undefined : [GlobalAccessLogger],
 })
