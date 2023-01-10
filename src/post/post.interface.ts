@@ -16,13 +16,11 @@ export enum PostType {
     IMAGE = 'image',
     VIDEO = 'video'
 }
-
-
 export type PostPublicData = Readonly<{
     id: string;
     userId: string;
     isActive: boolean;
-    images: string[];
+    media: string[];
     description: string;
     tagPeople: string[];
     tagProduct: string[];
@@ -39,7 +37,7 @@ export type Post = Readonly<{
     id: string;
     userId: string;
     isActive: boolean;
-    images: string[];
+    media: string[];
     description: string;
     tagPeople: string[];
     tagProduct: string[];
