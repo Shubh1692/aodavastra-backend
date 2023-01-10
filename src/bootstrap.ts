@@ -15,7 +15,8 @@ export const configureApp = (app: any) => {
   if (config.cors) {
     app.enableCors(config.cors);
   }
-  app.use(helmet());
+  // comment for load swagger ui in http schema
+  //app.use(helmet());
   app.use(compression());
   app.useGlobalPipes(
     new ValidationPipe({
