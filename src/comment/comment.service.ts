@@ -11,7 +11,16 @@ export class CommentService {
     @InjectModel("Comment") private readonly commentModel: Model<Comment>,
   ) { }
 
-
+  async findById(_id: string): Promise<Comment> {
+    const comment = await this.commentModel.findOne({
+      _id,
+      isActive: true
+    });
+    if (!comment) {
+      throw ErrorMessageException("User unable to fetch comment");
+    }
+    return comment;
+  }
 
   async create(commentDto: Partial<Comment>, userId: string): Promise<Comment> {
     
