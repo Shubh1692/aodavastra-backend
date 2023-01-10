@@ -34,7 +34,6 @@ export class SocialLinks {
   readonly snapchat!: string;
 }
 
-
 export class SignUpDto {
   @ApiProperty({example: "email@email.com", maxLength: 255})
   @IsEmail()
@@ -53,35 +52,65 @@ export class SignUpDto {
   @IsOptional()
   readonly bio!: string;
 
-  @ApiProperty({example: false })
+  @ApiProperty({example: false})
   @IsOptional()
   readonly isCreator!: boolean;
 
-  @ApiProperty({example: {
-    instagram: "link",
-    facebook: "link",
-    snapchat: "link"
-  } })
+  @ApiProperty({
+    example: {
+      instagram: "link",
+      facebook: "link",
+      snapchat: "link",
+    },
+  })
   @IsOptional()
   readonly socialLinks!: SocialLinks;
 
-  @ApiProperty({example: "phoneNo" })
+  @ApiProperty({example: "phoneNo"})
   @IsOptional()
   readonly phoneNo!: string;
 
-  @ApiProperty({example: "email" })
+  @ApiProperty({example: "email"})
   @IsOptional()
   readonly provider!: string;
 
-  @ApiProperty({example: "link" })
+  @ApiProperty({example: "link"})
   @IsOptional()
   readonly profilePicture!: string;
 
-  @ApiProperty({example: "link" })
+  @ApiProperty({example: "link"})
   @IsOptional()
   readonly coverPicture!: string;
 }
 
+export class UserUpdateDto {
+  @ApiProperty({example: "email@email.com", maxLength: 255})
+  @IsEmail()
+  @MaxLength(255)
+  readonly email!: string;
+
+  @ApiProperty({example: "name", minLength: 2})
+  @MinLength(2)
+  readonly name!: string;
+
+  @ApiProperty({example: "bio"})
+  @IsOptional()
+  readonly bio!: string;
+
+  @ApiProperty({
+    example: {
+      instagram: "link",
+      facebook: "link",
+      snapchat: "link",
+    },
+  })
+  @IsOptional()
+  readonly socialLinks!: SocialLinks;
+
+  @ApiProperty({example: "phoneNo"})
+  @IsOptional()
+  readonly phoneNo!: string;
+}
 export class LoginDto {
   @ApiProperty({example: "email@email.com", maxLength: 255})
   @IsEmail()

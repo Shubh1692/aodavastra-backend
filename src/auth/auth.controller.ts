@@ -6,6 +6,9 @@ import {
   Param,
   UseGuards,
   Body,
+  Put,
+  UseInterceptors,
+  UploadedFile,
 } from "@nestjs/common";
 import {AuthGuard} from "@nestjs/passport";
 import {Request} from "express";
@@ -16,11 +19,13 @@ import {
   ResetPasswordDto,
   SignUpDto,
   LoginDto,
+  UserUpdateDto,
 } from "./auth.interface";
 import {AuthService} from "./auth.service";
-import {ApiBearerAuth, ApiTags} from "@nestjs/swagger";
-import { User } from "../user/user.interface";
-
+import {ApiBearerAuth, ApiBody, ApiConsumes, ApiTags} from "@nestjs/swagger";
+import {User} from "../user/user.interface";
+import {FileInterceptor} from "@nestjs/platform-express";
+import {imageFileFilter, multerStorage} from "../common/multer";
 @ApiTags("auth")
 @Controller("user")
 export class AuthController {
@@ -39,13 +44,13 @@ export class AuthController {
   }
 
   @Post("signup")
-  async signup(@Body() signUpDto: SignUpDto, @Req() req: Request) {
+  async signup(@Body() signUpDto: SignUpDto) {
     return this.authService.signUpUser(signUpDto);
   }
 
   @UseGuards(AuthGuard())
   @Get("me")
-  @ApiBearerAuth('JWT-auth')
+  @ApiBearerAuth("JWT-auth")
   getProfile(@Req() req: Request) {
     return req.user;
   }
@@ -57,12 +62,76 @@ export class AuthController {
   }
 
   @Post("forgotten-password")
-  forgottenPassword(@Body() body: ForgottenPasswordDto, @Req() req: Request) {
+  forgottenPassword(@Body() body: ForgottenPasswordDto) {
     return this.authService.forgottenPassword(body);
   }
 
   @Post("reset-password")
   resetPassword(@Body() body: ResetPasswordDto) {
     return this.authService.resetPassword(body);
+  }
+
+  @Put("")
+  @UseGuards(AuthGuard())
+  @ApiBearerAuth("JWT-auth")
+  update(@Body() body: UserUpdateDto, @Req() req: Request) {
+    const user = req.user as User;
+    return this.authService.update(user._id, body);
+  }
+
+  @Put("profile-picture")
+  @ApiBody({
+    schema: {
+      type: "object",
+      properties: {
+        file: {
+          type: "string",
+          format: "binary",
+        },
+      },
+    },
+  })
+  @UseInterceptors(
+    FileInterceptor("file", {
+      storage: multerStorage,
+      fileFilter: imageFileFilter,
+    }),
+  )
+  @UseGuards(AuthGuard())
+  @ApiConsumes("multipart/form-data")
+  @ApiBearerAuth("JWT-auth")
+  async updateProfilePicture(
+    @UploadedFile("file") file: Express.Multer.File,
+    @Req() req: Request,
+  ) {
+    return this.authService.updatePicture((req.user as User)._id, file, null);
+  }
+
+  @Put("cover-picture")
+  @ApiBody({
+    schema: {
+      type: "object",
+      properties: {
+        file: {
+          type: "string",
+          format: "binary",
+        },
+      },
+    },
+  })
+  @UseInterceptors(
+    FileInterceptor("file", {
+      storage: multerStorage,
+      fileFilter: imageFileFilter,
+    }),
+  )
+  @UseGuards(AuthGuard())
+  @ApiConsumes("multipart/form-data")
+  @ApiBearerAuth("JWT-auth")
+  async updateCoverPicture(
+    @UploadedFile("file") file: Express.Multer.File,
+    @Req() req: Request,
+  ) {
+    return this.authService.updatePicture((req.user as User)._id, null, file);
   }
 }
