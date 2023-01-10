@@ -14,6 +14,8 @@ import { AddressModule } from "./address/address.module";
 import { FollowerModule } from "./follower/follower.module";
 import { PostModule } from "./post/post.module";
 import { PostLikeModule } from "./post-like/post-like.module";
+import { CommentModule } from "./comment/comment.module";
+
 import { ServeStaticModule } from "@nestjs/serve-static";
 import { join } from 'path'; 
 
@@ -44,6 +46,7 @@ const DEV_TRANSPORTER = {
     FollowerModule,
     PostModule,
     PostLikeModule,
+    CommentModule, 
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'uploads'),
       serveRoot: '/uploads'

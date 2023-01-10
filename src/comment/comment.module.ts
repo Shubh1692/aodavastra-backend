@@ -1,12 +1,12 @@
 import { Module } from "@nestjs/common";
-import setupSwagger from "./post.swagger";
-import { PostModel } from "./post.model";
-import { PostController } from "./post.controller";
-import { PostService } from "./post.service";
 import PassportModule from "../common/passport.module";
+import {JwtModule} from "@nestjs/jwt";
+import { CommentModel } from "./comment.model";
+import { CommentService } from "./comment.service";
+import { CommentController } from "./comment.controller";
+import setupSwagger from "./comment.swagger";
 import { UserModule } from "../user/user.module";
 import config from "../config";
-import { JwtModule } from "@nestjs/jwt";
 
 @Module({
   imports: [
@@ -17,12 +17,11 @@ import { JwtModule } from "@nestjs/jwt";
       secret: process.env.JWT_SECRET,
       signOptions: {expiresIn: config.auth.jwtTokenExpireInSec},
     }),
-    PostModel],
-  providers: [PostService],
-  controllers: [PostController],
+    CommentModel],
+  providers: [CommentService],
+  controllers: [CommentController],
   exports: [],
 })
-export class PostModule { }
+export class CommentModule { }
 
-
-setupSwagger(PostModule)
+setupSwagger(CommentModule);
