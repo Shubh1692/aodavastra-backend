@@ -5,6 +5,7 @@ import {
   IsUUID,
   IsNotEmpty,
   IsOptional,
+  IsString,
 } from "class-validator";
 import {ApiProperty} from "@nestjs/swagger";
 
@@ -111,6 +112,35 @@ export class UserUpdateDto {
   @IsOptional()
   readonly phoneNo!: string;
 }
+
+export class UserCreatorDto {
+  @ApiProperty({example: "email@email.com", maxLength: 255})
+  @IsEmail()
+  @MaxLength(255)
+  readonly email!: string;
+
+  @ApiProperty({example: "name", minLength: 2})
+  @MinLength(2)
+  readonly name!: string;
+
+  @ApiProperty({example: "bio"})
+  @IsOptional()
+  readonly bio!: string;
+
+  @ApiProperty({
+    example: {
+      instagram: "link",
+      facebook: "link",
+      snapchat: "link",
+    },
+  })
+  @IsOptional()
+  readonly socialLinks!: SocialLinks;
+
+  @ApiProperty({example: "phoneNo"})
+  @IsOptional()
+  readonly phoneNo!: string;
+}
 export class LoginDto {
   @ApiProperty({example: "email@email.com", maxLength: 255})
   @IsEmail()
@@ -142,4 +172,18 @@ export class ResetPasswordDto {
   @ApiProperty({example: "password", minLength: 8})
   @MinLength(8)
   readonly password!: string;
+}
+
+export class ChangePasswordDto {
+  @ApiProperty({example: "password"})
+  @IsNotEmpty()
+  @IsString()
+  readonly oldPassword!: string;
+
+
+  @ApiProperty({example: "newPassword", minLength: 8})
+  @IsNotEmpty()
+  @IsString()
+  @MinLength(8)
+  readonly newPassword!: string;
 }

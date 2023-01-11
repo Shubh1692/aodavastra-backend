@@ -3,13 +3,13 @@ import {DocumentBuilder} from "@nestjs/swagger";
 import {setupSwaggerDocument} from "../common/swagger";
 
 export default setupSwaggerDocument(
-  "follower",
+  "follow",
   new DocumentBuilder()
     .setTitle("Follower Docs")
-    .setDescription("Basic user follower features")
+    .setDescription("Basic user follow features")
     .setVersion("1.0")
     .setBasePath("api")
-    .addTag("follower")
+    .addTag("follow")
     .addBearerAuth(
       {
         type: 'http',

@@ -4,17 +4,20 @@ import {JwtService} from "@nestjs/jwt";
 import {comparePassword} from "../common/auth";
 import {UserService} from "../user/user.service";
 import {User} from "../user/user.interface";
-import {LoginCredentialsException} from "../common/exceptions";
+import {ErrorMessageException, LoginCredentialsException, UserNotFoundException} from "../common/exceptions";
 
 import {
   ActivateParams,
+  ChangePasswordDto,
   ForgottenPasswordDto,
   ResetPasswordDto,
   SignUpDto,
+  UserCreatorDto,
   UserUpdateDto,
 } from "./auth.interface";
 import {FileUploadService} from "../common/services/upload.service";
 import config from "../config";
+import { FollowerService } from "../follower/follower.service";
 
 @Injectable()
 export class AuthService {
@@ -22,6 +25,7 @@ export class AuthService {
     private readonly userService: UserService,
     private readonly jwtService: JwtService,
     private readonly fileUploadService: FileUploadService,
+    private readonly followerService: FollowerService
   ) {}
 
   async validateUser(email: string, password: string): Promise<User> {
@@ -29,6 +33,15 @@ export class AuthService {
 
     if (!comparePassword(password, user.password)) {
       throw LoginCredentialsException();
+    }
+    return user;
+  }
+
+  async validateUserById(id: string, password: string): Promise<User> {
+    const user = await this.userService.findById(id, true);
+    console.log(user, password)
+    if (!comparePassword(password, user.password)) {
+      throw ErrorMessageException("Old Password does not match");
     }
     return user;
   }
@@ -77,11 +90,42 @@ export class AuthService {
       user: user.getPublicData(),
     };
   }
+  
+  async changePassword({ oldPassword, newPassword }: ChangePasswordDto, userId: string) {
+    await this.validateUserById(userId, oldPassword)
+    const user = await this.userService.changePassword(
+      oldPassword,
+      newPassword,
+      userId
+    );
+    return {
+      token: this.jwtService.sign({}, {subject: `${user.id}`}),
+      user: user.getPublicData(),
+    };
+  }
 
   async update(userId: string, userDto: UserUpdateDto) {
     const user = await this.userService.update(
       userId,
       userDto
+    );
+    return user;
+  }
+
+  async becomeCreator(userId: string, userDto: UserCreatorDto) {
+    const existUser = await this.userService.findById(userId);
+    if (!existUser) {
+      throw UserNotFoundException()
+    }
+    if (existUser.isCreator) {
+      throw ErrorMessageException(`${userDto.name} is already ModaVastra Creator`)
+    }
+    const user = await this.userService.update(
+      userId,
+      {
+        ...userDto,
+        isCreator: true
+      }
     );
     return user;
   }
@@ -115,5 +159,13 @@ export class AuthService {
 
     const user = await this.userService.update(userId, JSON.parse(JSON.stringify(imageUrlObj)));
     return user;
+  }
+
+  async getUserProfile(user: User) {
+    const follow = await this.followerService.findFlowingAndFollowerCountByUserId(user._id);
+    return {
+      ...user.getPublicData(),
+      ...follow
+    }
   }
 }

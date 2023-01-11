@@ -11,11 +11,13 @@ import {JwtStrategy} from "./jwt.strategy";
 import {AuthController} from "./auth.controller";
 import setupSwagger from "./auth.swagger";
 import { FileUploadService } from "../common/services/upload.service";
+import { FollowerModule } from "../follower/follower.module";
 
 @Module({
   imports: [
     PassportModule,
     UserModule,
+    FollowerModule,
     JwtModule.register({
       secret: process.env.JWT_SECRET,
       signOptions: {expiresIn: config.auth.jwtTokenExpireInSec},
