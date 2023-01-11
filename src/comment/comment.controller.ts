@@ -32,6 +32,12 @@ export class CommentController {
     return this.commentService.create(commentDto, user._id);
   }
 
+  @Get(":id")
+  @UseGuards(AuthGuard())
+  @ApiBearerAuth("JWT-auth")
+  getCommentId(@Req() req: Request, @Param('id') id: string) {
+    return this.commentService.findById(id);
+  }
 
   @Delete(":id")
   @UseGuards(AuthGuard())

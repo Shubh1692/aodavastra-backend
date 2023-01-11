@@ -17,18 +17,27 @@ import {ApiBearerAuth, ApiTags} from "@nestjs/swagger";
 import {User} from "../user/user.interface";
 import {FollowerDto} from "./follower.interface";
 
-@ApiTags("follower")
-@Controller("follower")
+@ApiTags("follow")
+@Controller("follow")
 export class FollowerController {
   constructor(private readonly followerService: FollowerService) {}
 
-  @Get("")
+  @Get("followers")
   @UseGuards(AuthGuard())
   @ApiBearerAuth("JWT-auth")
   followers(@Req() req: Request) {
     const user = req.user as User;
-    return this.followerService.findByUserId(user._id);
+    return this.followerService.findFollowerUsersByUserId(user._id);
   }
+
+  @Get("following")
+  @UseGuards(AuthGuard())
+  @ApiBearerAuth("JWT-auth")
+  following(@Req() req: Request) {
+    const user = req.user as User;
+    return this.followerService.findFollowingUsersByUserId(user._id);
+  }
+
 
   @Post("")
   @UseGuards(AuthGuard())

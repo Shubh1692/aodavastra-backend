@@ -10,12 +10,12 @@ import {
     IsObject,
   } from "class-validator";
 import { ApiProperty } from "@nestjs/swagger";
-import { Document } from "mongoose";
+import { Document, ObjectId } from "mongoose";
 
 export type CommentPublicData = Readonly<{
     id: string;
-    userId: string;
-    postId: string;
+    userId: ObjectId;
+    postId: ObjectId;
     comment: string;
     isActive: boolean;
 }>;
@@ -26,8 +26,8 @@ export type CommentMethods = {
 
 export type Comment = Readonly<{
     id: string;
-    userId: string;
-    postId: string;
+    userId: ObjectId;
+    postId: ObjectId;
     comment: string;
     isActive: boolean;
 
@@ -42,7 +42,7 @@ export class CommentDto {
     @ApiProperty({ example: "postId" })
     @IsString()
     @IsNotEmpty()
-    readonly postId!: string;
+    readonly postId!: ObjectId;
 
     @ApiProperty({ example: "comment on post" })
     @IsString()

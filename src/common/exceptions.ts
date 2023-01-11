@@ -20,6 +20,7 @@ export const PasswordResetTokenInvalidException = () =>
 
 export const LoginCredentialsException = () =>
   new UnauthorizedException("Login credentials are wrong.");
+  
 
 export const ErrorMessageException = (message: string) =>
   new BadRequestException(message);

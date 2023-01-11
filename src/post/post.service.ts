@@ -70,9 +70,7 @@ export class PostService {
     if (!tagProduct.length) {
       throw ErrorMessageException("Post required at least one prodct")
     }
-   
     const imageUrlObj: { media?: string,type?:string } = {}
-    console.log(media)
     if (media && process.env.AWS_ACCESS_KEY_ID) {
       imageUrlObj.media = await this.fileUploadService.upload(
         media,

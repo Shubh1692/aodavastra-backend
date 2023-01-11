@@ -1,7 +1,7 @@
-import { Document } from "mongoose";
+import { Document, ObjectId } from "mongoose";
 
 export type UserPublicData = Readonly<{
-  id: string;
+  _id: ObjectId;
   name: string;
   bio: string;
   isCreator: boolean;
@@ -23,7 +23,7 @@ export type UserMethods = {
 };
 
 export type User = Readonly<{
-  id: string;
+  _id: ObjectId;
   name: string;
   bio: string;
   isCreator: boolean;

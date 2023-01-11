@@ -10,7 +10,7 @@ import {
   IsObject,
 } from "class-validator";
 import {ApiProperty} from "@nestjs/swagger";
-import {Document} from "mongoose";
+import mongoose, {Document, ObjectId} from "mongoose";
 
 export type AddressPublicData = Readonly<{
   id: string;
@@ -33,7 +33,7 @@ export type AddressMethods = {
 };
 
 export type Address = Readonly<{
-  userId: string;
+  userId: ObjectId;
   id: string;
   pinCode: string;
   isActive: boolean;
@@ -45,7 +45,7 @@ export type Address = Readonly<{
   };
   name: string;
   phoneNo: string;
-  isDefault: Boolean;
+  isDefault: boolean;
 }> &
   AddressMethods &
   Document;

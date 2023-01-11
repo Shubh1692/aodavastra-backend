@@ -1,11 +1,11 @@
 import {ApiProperty} from "@nestjs/swagger";
 import {IsNotEmpty, IsString} from "class-validator";
-import {Document} from "mongoose";
+import {Document, ObjectId} from "mongoose";
 
 export type FollowerPublicData = Readonly<{
   id: string;
-  followerUserId: string;
-  followingUserId: string;
+  followerUserId: ObjectId;
+  followingUserId: ObjectId;
   isActive: boolean;
 }>;
 
@@ -15,8 +15,8 @@ export type FollowerMethods = {
 
 export type Follower = Readonly<{
   id: string;
-  followerUserId: string;
-  followingUserId: string;
+  followerUserId: ObjectId;
+  followingUserId: ObjectId;
   isActive: boolean;
 }> &
   FollowerMethods &
@@ -26,5 +26,5 @@ export class FollowerDto {
   @ApiProperty({example: "uuid"})
   @IsString()
   @IsNotEmpty()
-  readonly followingUserId!: string;
+  readonly followingUserId!: ObjectId;
 }

@@ -1,4 +1,4 @@
-import { Document } from "mongoose";
+import { Document, ObjectId } from "mongoose";
 import {
     IsEmail,
     MinLength,
@@ -13,7 +13,6 @@ import {
     ArrayMinSize,
 } from "class-validator";
 import { ApiProperty } from "@nestjs/swagger";
-import { Type } from "class-transformer";
 
 
 export enum PostType {
@@ -22,12 +21,12 @@ export enum PostType {
 }
 export type PostPublicData = Readonly<{
     id: string;
-    userId: string;
+    userId: ObjectId;
     isActive: boolean;
     media: string[];
     description: string;
-    tagPeople: string[];
-    tagProduct: string[];
+    tagPeople: ObjectId[];
+    tagProduct: ObjectId[];
     type: PostType;
     url: string;
 }>;
@@ -39,12 +38,12 @@ export type PostMethods = {
 export type Post = Readonly<{
 
     id: string;
-    userId: string;
+    userId: ObjectId;
     isActive: boolean;
     media: string;
     description: string;
-    tagPeople: string[];
-    tagProduct: string[];
+    tagPeople: ObjectId[];
+    tagProduct: ObjectId[];
     type: PostType;
 
 }> &
