@@ -5,13 +5,12 @@ import { Post, PostType } from "./post.interface";
 export const PostSchema = new mongoose.Schema<Post>(
   {
     userId: { type: String, required: true, ref: 'User' },
-    media: [{type: String}],
-    tagPeople: [{type: String}],
+    media: {type: String},
+    tagPeople: [{type: String, ref: 'User'}],
     tagProduct: [{type: String}],
     type:{type: String, enum: PostType},
-    url: {type: String},
     isActive: { type: Boolean, default: true }
-  },
+  }, 
   { timestamps: true },
 );
 
@@ -19,6 +18,6 @@ export const PostSchema = new mongoose.Schema<Post>(
  * Methods.
  */
 PostSchema.methods.getPublicData = function () {
-  const { userId, _id, media, description, tagPeople, tagProduct, type, url, isActive } = this;
-  return { userId, _id, media, description, tagPeople, tagProduct, type, url, isActive };
+  const { userId, _id, media, description, tagPeople, tagProduct, type, isActive } = this;
+  return { userId, _id, media, description, tagPeople, tagProduct, type, isActive };
 };

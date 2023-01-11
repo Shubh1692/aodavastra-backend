@@ -7,18 +7,18 @@ import PassportModule from "../common/passport.module";
 import { UserModule } from "../user/user.module";
 import config from "../config";
 import { JwtModule } from "@nestjs/jwt";
+import { FileUploadService } from "../common/services/upload.service";
 
 @Module({
   imports: [
-
-  PassportModule,
+    PassportModule,
     UserModule,
     JwtModule.register({
       secret: process.env.JWT_SECRET,
-      signOptions: {expiresIn: config.auth.jwtTokenExpireInSec},
+      signOptions: { expiresIn: config.auth.jwtTokenExpireInSec },
     }),
     PostModel],
-  providers: [PostService],
+  providers: [PostService, FileUploadService],
   controllers: [PostController],
   exports: [],
 })
