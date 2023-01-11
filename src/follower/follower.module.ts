@@ -19,7 +19,7 @@ import setupSwagger from "./follower.swagger";
   ],
   providers: [FollowerService],
   controllers: [FollowerController],
-  exports: [],
+  exports: [FollowerService],
 })
 export class FollowerModule {}
 

@@ -53,8 +53,10 @@ export class AuthController {
   @Get("me")
   @ApiBearerAuth("JWT-auth")
   getProfile(@Req() req: Request) {
-    return req.user;
+    const user = req.user as User;
+    return this.authService.getUserProfile(user);
   }
+  
 
   @UseGuards(AuthGuard())
   @Get("relogin")
@@ -77,7 +79,6 @@ export class AuthController {
   @ApiBearerAuth("JWT-auth")
   changePassword(@Body() body: ChangePasswordDto, @Req() req: Request) {
     const user = req.user as User;
-    console.log(body)
     return this.authService.changePassword(body, user._id);
   }
 

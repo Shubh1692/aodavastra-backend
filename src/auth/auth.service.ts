@@ -16,6 +16,7 @@ import {
 } from "./auth.interface";
 import {FileUploadService} from "../common/services/upload.service";
 import config from "../config";
+import { FollowerService } from "../follower/follower.service";
 
 @Injectable()
 export class AuthService {
@@ -23,6 +24,7 @@ export class AuthService {
     private readonly userService: UserService,
     private readonly jwtService: JwtService,
     private readonly fileUploadService: FileUploadService,
+    private readonly followerService: FollowerService
   ) {}
 
   async validateUser(email: string, password: string): Promise<User> {
@@ -138,5 +140,13 @@ export class AuthService {
 
     const user = await this.userService.update(userId, JSON.parse(JSON.stringify(imageUrlObj)));
     return user;
+  }
+
+  async getUserProfile(user: User) {
+    const follow = await this.followerService.findFlowingAndFollowerCountByUserId(user._id);
+    return {
+      ...user.getPublicData(),
+      ...follow
+    }
   }
 }

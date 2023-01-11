@@ -26,6 +26,26 @@ export class FollowerService {
     return followers;
   }
 
+  async findFlowingAndFollowerCountByUserId(userId: string): Promise<{
+    following: number;
+    followers: number;
+  }> {
+    const [following, followers] = await Promise.all([
+      this.followerModel.count({
+        followerUserId: userId,
+        isActive: true,
+      }),
+      this.followerModel.count({
+        followingUserId: userId,
+        isActive: true,
+      }),
+    ]);
+    return {
+      following,
+      followers,
+    };
+  }
+
   async create(
     followerDto: Partial<Follower>,
     followerUserId: string,
