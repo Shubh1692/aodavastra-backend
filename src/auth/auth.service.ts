@@ -4,7 +4,7 @@ import {JwtService} from "@nestjs/jwt";
 import {comparePassword} from "../common/auth";
 import {UserService} from "../user/user.service";
 import {User} from "../user/user.interface";
-import {ErrorMessageException, LoginCredentialsException} from "../common/exceptions";
+import {ErrorMessageException, LoginCredentialsException, UserNotFoundException} from "../common/exceptions";
 
 import {
   ActivateParams,
@@ -12,6 +12,7 @@ import {
   ForgottenPasswordDto,
   ResetPasswordDto,
   SignUpDto,
+  UserCreatorDto,
   UserUpdateDto,
 } from "./auth.interface";
 import {FileUploadService} from "../common/services/upload.service";
@@ -107,6 +108,24 @@ export class AuthService {
     const user = await this.userService.update(
       userId,
       userDto
+    );
+    return user;
+  }
+
+  async becomeCreator(userId: string, userDto: UserCreatorDto) {
+    const existUser = await this.userService.findById(userId);
+    if (!existUser) {
+      throw UserNotFoundException()
+    }
+    // if (existUser.isCreator) {
+    //   throw ErrorMessageException(`${userDto.name} is already ModaVastra Creator`)
+    // }
+    const user = await this.userService.update(
+      userId,
+      {
+        ...userDto,
+        isCreator: true
+      }
     );
     return user;
   }

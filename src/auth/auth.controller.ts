@@ -21,6 +21,7 @@ import {
   LoginDto,
   UserUpdateDto,
   ChangePasswordDto,
+  UserCreatorDto,
 } from "./auth.interface";
 import {AuthService} from "./auth.service";
 import {ApiBearerAuth, ApiBody, ApiConsumes, ApiTags} from "@nestjs/swagger";
@@ -74,13 +75,6 @@ export class AuthController {
     return this.authService.resetPassword(body);
   }
 
-  @UseGuards(AuthGuard())
-  @Post("change-password")
-  @ApiBearerAuth("JWT-auth")
-  changePassword(@Body() body: ChangePasswordDto, @Req() req: Request) {
-    const user = req.user as User;
-    return this.authService.changePassword(body, user._id);
-  }
 
   @Put("")
   @UseGuards(AuthGuard())
@@ -89,6 +83,42 @@ export class AuthController {
     const user = req.user as User;
     return this.authService.update(user._id, body);
   }
+
+  @Put("become-creator")
+  @UseGuards(AuthGuard())
+  @ApiBearerAuth("JWT-auth")
+  becomeCreator(@Body() body: UserCreatorDto, @Req() req: Request) {
+    const user = req.user as User;
+    return this.authService.becomeCreator(user._id, body);
+  }
+
+
+  @UseGuards(AuthGuard())
+  @Put("change-password")
+  @ApiBearerAuth("JWT-auth")
+  changePassword(@Body() body: ChangePasswordDto, @Req() req: Request) {
+    const user = req.user as User;
+    return this.authService.changePassword(body, user._id);
+  }
+  
+  @Put("profile-picture")
+  @ApiBody({
+    schema: {
+      type: "object",
+      properties: {
+        file: {
+          type: "string",
+          format: "binary",
+        },
+      },
+    },
+  })
+  @UseInterceptors(
+    FileInterceptor("file", {
+      storage: multerStorage,
+      fileFilter: imageFileFilter,
+    }),
+  )
 
   @Put("profile-picture")
   @ApiBody({

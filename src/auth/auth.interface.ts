@@ -112,6 +112,35 @@ export class UserUpdateDto {
   @IsOptional()
   readonly phoneNo!: string;
 }
+
+export class UserCreatorDto {
+  @ApiProperty({example: "email@email.com", maxLength: 255})
+  @IsEmail()
+  @MaxLength(255)
+  readonly email!: string;
+
+  @ApiProperty({example: "name", minLength: 2})
+  @MinLength(2)
+  readonly name!: string;
+
+  @ApiProperty({example: "bio"})
+  @IsOptional()
+  readonly bio!: string;
+
+  @ApiProperty({
+    example: {
+      instagram: "link",
+      facebook: "link",
+      snapchat: "link",
+    },
+  })
+  @IsOptional()
+  readonly socialLinks!: SocialLinks;
+
+  @ApiProperty({example: "phoneNo"})
+  @IsOptional()
+  readonly phoneNo!: string;
+}
 export class LoginDto {
   @ApiProperty({example: "email@email.com", maxLength: 255})
   @IsEmail()
