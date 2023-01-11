@@ -161,6 +161,33 @@ export class UserService {
     return user;
   }
 
+  async changePassword(
+    oldPassword: string,
+    newPassword: string,
+    userId: string
+  ) {
+    const user = await this.userModel
+      .findByIdAndUpdate(
+        userId,
+        {
+          password: await hashPassword(newPassword),
+          passwordResetToken: undefined,
+          passwordResetExpires: undefined,
+        },
+        {
+          new: true,
+          runValidators: true,
+        },
+      )
+      .exec();
+
+    if (!user) {
+      throw UserNotFoundException();
+    }
+    this.userMailer.sendResetPasswordMail(user.email);
+    return user;
+  }
+
   async update(id: string, updateDto: Partial<User>): Promise<User> {
     try {
       const oldUser = await this.userModel.findById(id);

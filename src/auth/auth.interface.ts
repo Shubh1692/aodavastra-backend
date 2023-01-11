@@ -143,3 +143,13 @@ export class ResetPasswordDto {
   @MinLength(8)
   readonly password!: string;
 }
+
+export class ChangePasswordDto {
+  @ApiProperty({example: "password"})
+  readonly oldPassword!: string;
+
+
+  @ApiProperty({example: "newPassword", minLength: 8})
+  @MinLength(8)
+  readonly newPassword!: string;
+}

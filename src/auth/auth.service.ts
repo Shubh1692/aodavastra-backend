@@ -4,10 +4,11 @@ import {JwtService} from "@nestjs/jwt";
 import {comparePassword} from "../common/auth";
 import {UserService} from "../user/user.service";
 import {User} from "../user/user.interface";
-import {LoginCredentialsException} from "../common/exceptions";
+import {ErrorMessageException, LoginCredentialsException} from "../common/exceptions";
 
 import {
   ActivateParams,
+  ChangePasswordDto,
   ForgottenPasswordDto,
   ResetPasswordDto,
   SignUpDto,
@@ -29,6 +30,15 @@ export class AuthService {
 
     if (!comparePassword(password, user.password)) {
       throw LoginCredentialsException();
+    }
+    return user;
+  }
+
+  async validateUserById(id: string, password: string): Promise<User> {
+    const user = await this.userService.findById(id);
+
+    if (!comparePassword(password, user.password)) {
+      throw ErrorMessageException("Old Password does not match");
     }
     return user;
   }
@@ -72,6 +82,19 @@ export class AuthService {
       password,
     );
 
+    return {
+      token: this.jwtService.sign({}, {subject: `${user.id}`}),
+      user: user.getPublicData(),
+    };
+  }
+  
+  async changePassword({ oldPassword, newPassword }: ChangePasswordDto, userId: string) {
+    await this.validateUserById(userId, oldPassword)
+    const user = await this.userService.changePassword(
+      oldPassword,
+      newPassword,
+      userId
+    );
     return {
       token: this.jwtService.sign({}, {subject: `${user.id}`}),
       user: user.getPublicData(),

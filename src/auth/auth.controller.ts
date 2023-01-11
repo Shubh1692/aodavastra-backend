@@ -20,6 +20,7 @@ import {
   SignUpDto,
   LoginDto,
   UserUpdateDto,
+  ChangePasswordDto,
 } from "./auth.interface";
 import {AuthService} from "./auth.service";
 import {ApiBearerAuth, ApiBody, ApiConsumes, ApiTags} from "@nestjs/swagger";
@@ -69,6 +70,15 @@ export class AuthController {
   @Post("reset-password")
   resetPassword(@Body() body: ResetPasswordDto) {
     return this.authService.resetPassword(body);
+  }
+
+  @UseGuards(AuthGuard())
+  @Post("change-password")
+  @ApiBearerAuth("JWT-auth")
+  changePassword(@Body() body: ChangePasswordDto, @Req() req: Request) {
+    const user = req.user as User;
+    console.log(body)
+    return this.authService.changePassword(body, user._id);
   }
 
   @Put("")
