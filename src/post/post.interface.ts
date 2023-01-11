@@ -9,7 +9,11 @@ import {
     IsBoolean,
     IsNotEmpty,
     IsObject,
+    IsArray,
+    ArrayMinSize,
 } from "class-validator";
+import { ApiProperty } from "@nestjs/swagger";
+import { Type } from "class-transformer";
 
 
 export enum PostType {
@@ -37,12 +41,11 @@ export type Post = Readonly<{
     id: string;
     userId: string;
     isActive: boolean;
-    media: string[];
+    media: string;
     description: string;
     tagPeople: string[];
     tagProduct: string[];
     type: PostType;
-    url: string;
 
 }> &
     PostMethods &
@@ -50,3 +53,19 @@ export type Post = Readonly<{
 
 
 
+    export class PostDto {
+      
+        @ApiProperty({example: "description1"})
+        @IsString()
+        @IsNotEmpty()
+        readonly description!: string;
+      
+        @ApiProperty({example: "tag-people"})
+        @IsNotEmpty()
+        readonly tagPeople!: string;
+      
+        @ApiProperty({example: "tag-product"})
+        @IsNotEmpty()
+        readonly tagProduct!: string;
+      }
+      
