@@ -117,9 +117,9 @@ export class AuthService {
     if (!existUser) {
       throw UserNotFoundException()
     }
-    // if (existUser.isCreator) {
-    //   throw ErrorMessageException(`${userDto.name} is already ModaVastra Creator`)
-    // }
+    if (existUser.isCreator) {
+      throw ErrorMessageException(`${userDto.name} is already ModaVastra Creator`)
+    }
     const user = await this.userService.update(
       userId,
       {
