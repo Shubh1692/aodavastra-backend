@@ -1,4 +1,4 @@
-import {Model} from "mongoose";
+import {Model,ObjectId} from "mongoose";
 import {v4 as uuid} from "uuid";
 import {Injectable} from "@nestjs/common";
 import {InjectModel} from "@nestjs/mongoose";
@@ -51,7 +51,7 @@ export class UserService {
     }
   }
 
-  async findById(id: string, hashPassword: boolean = false): Promise<User> {
+  async findById(id: ObjectId, hashPassword: boolean = false): Promise<User> {
     const user = await this.userModel.findById(id, hashPassword ? "+password" : "");
 
     if (!user) {
@@ -164,7 +164,7 @@ export class UserService {
   async changePassword(
     oldPassword: string,
     newPassword: string,
-    userId: string
+    userId: ObjectId
   ) {
     const user = await this.userModel
       .findByIdAndUpdate(
@@ -188,7 +188,7 @@ export class UserService {
     return user;
   }
 
-  async update(id: string, updateDto: Partial<User>): Promise<User> {
+  async update(id: ObjectId, updateDto: Partial<User>): Promise<User> {
     try {
       const oldUser = await this.userModel.findById(id);
       const user = await this.userModel.findByIdAndUpdate(

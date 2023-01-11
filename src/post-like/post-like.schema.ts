@@ -4,8 +4,8 @@ import { PostLike } from "./post-like.interface";
 
 export const PostLikeSchema = new mongoose.Schema<PostLike>(
   {
-    userId: { type: String, required: true, ref: 'User' },
-    postId: { type: String, required: true, ref: 'Post' },
+    userId: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'User' },
+    postId: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'Post' },
     isActive: { type: Boolean, default: true }
   },
   { timestamps: true },

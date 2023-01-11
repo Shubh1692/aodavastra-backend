@@ -5,7 +5,7 @@ import {comparePassword} from "../common/auth";
 import {UserService} from "../user/user.service";
 import {User} from "../user/user.interface";
 import {ErrorMessageException, LoginCredentialsException, UserNotFoundException} from "../common/exceptions";
-
+import { ObjectId } from 'mongoose';
 import {
   ActivateParams,
   ChangePasswordDto,
@@ -37,9 +37,8 @@ export class AuthService {
     return user;
   }
 
-  async validateUserById(id: string, password: string): Promise<User> {
+  async validateUserById(id: ObjectId, password: string): Promise<User> {
     const user = await this.userService.findById(id, true);
-    console.log(user, password)
     if (!comparePassword(password, user.password)) {
       throw ErrorMessageException("Old Password does not match");
     }
@@ -91,7 +90,7 @@ export class AuthService {
     };
   }
   
-  async changePassword({ oldPassword, newPassword }: ChangePasswordDto, userId: string) {
+  async changePassword({ oldPassword, newPassword }: ChangePasswordDto, userId: ObjectId) {
     await this.validateUserById(userId, oldPassword)
     const user = await this.userService.changePassword(
       oldPassword,
@@ -104,7 +103,7 @@ export class AuthService {
     };
   }
 
-  async update(userId: string, userDto: UserUpdateDto) {
+  async update(userId: ObjectId, userDto: UserUpdateDto) {
     const user = await this.userService.update(
       userId,
       userDto
@@ -112,7 +111,7 @@ export class AuthService {
     return user;
   }
 
-  async becomeCreator(userId: string, userDto: UserCreatorDto) {
+  async becomeCreator(userId: ObjectId, userDto: UserCreatorDto) {
     const existUser = await this.userService.findById(userId);
     if (!existUser) {
       throw UserNotFoundException()
@@ -131,7 +130,7 @@ export class AuthService {
   }
 
   async updatePicture(
-    userId: string,
+    userId: ObjectId,
     profilePicture: Express.Multer.File | null,
     coverPicture: Express.Multer.File | null,
   ) {

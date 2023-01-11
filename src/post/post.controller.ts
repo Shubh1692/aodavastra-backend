@@ -94,8 +94,6 @@ export class PostController {
   @ApiBearerAuth("JWT-auth")
   addPost(@Req() req: Request, @UploadedFile("file") media: Express.Multer.File, @Body() postDto: PostDto) {
     const user = req.user as User;
-
-    console.log(media)
     return this.postService.create(
       user._id,
       postDto as any, media) ;

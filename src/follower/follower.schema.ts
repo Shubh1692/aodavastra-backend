@@ -4,8 +4,8 @@ import { Follower } from "./follower.interface";
 
 export const FollowerSchema = new mongoose.Schema<Follower>(
   {
-    followerUserId: { type: String, required: true, ref: 'User' },
-    followingUserId: { type: String, required: true, ref: 'User' },
+    followerUserId: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'User' },
+    followingUserId: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'User' },
     isActive: { type: Boolean, default: true }
   },
   { timestamps: true },
