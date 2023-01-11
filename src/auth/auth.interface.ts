@@ -5,6 +5,7 @@ import {
   IsUUID,
   IsNotEmpty,
   IsOptional,
+  IsString,
 } from "class-validator";
 import {ApiProperty} from "@nestjs/swagger";
 
@@ -146,10 +147,14 @@ export class ResetPasswordDto {
 
 export class ChangePasswordDto {
   @ApiProperty({example: "password"})
+  @IsNotEmpty()
+  @IsString()
   readonly oldPassword!: string;
 
 
   @ApiProperty({example: "newPassword", minLength: 8})
+  @IsNotEmpty()
+  @IsString()
   @MinLength(8)
   readonly newPassword!: string;
 }

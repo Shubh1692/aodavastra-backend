@@ -35,8 +35,8 @@ export class AuthService {
   }
 
   async validateUserById(id: string, password: string): Promise<User> {
-    const user = await this.userService.findById(id);
-
+    const user = await this.userService.findById(id, true);
+    console.log(user, password)
     if (!comparePassword(password, user.password)) {
       throw ErrorMessageException("Old Password does not match");
     }
