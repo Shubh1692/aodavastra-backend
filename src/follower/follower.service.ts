@@ -13,7 +13,7 @@ export class FollowerService {
     private readonly userService: UserService,
   ) {}
 
-  async findByUserId(followerUserId: string): Promise<Follower[]> {
+  async findFollowingUsersByUserId(followerUserId: string): Promise<Follower[]> {
     const followers = await this.followerModel
       .find({
         followerUserId,
@@ -25,6 +25,20 @@ export class FollowerService {
       });
     return followers;
   }
+
+  async findFollowerUsersByUserId(followingUserId: string): Promise<Follower[]> {
+    const followers = await this.followerModel
+      .find({
+        followingUserId,
+        isActive: true,
+      })
+      .populate("followerUserId")
+      .sort({
+        createdAt: -1,
+      });
+    return followers;
+  }
+
 
   async findFlowingAndFollowerCountByUserId(userId: string): Promise<{
     following: number;
