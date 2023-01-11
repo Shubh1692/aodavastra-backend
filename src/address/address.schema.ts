@@ -4,7 +4,7 @@ import { Address } from "./address.interface";
 
 export const AddressSchema = new mongoose.Schema<Address>(
   {
-    userId: { type: String, required: true, ref: 'User' },
+    userId: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'User' },
     pinCode: { type: String, requried: true },
     city: { type: String, requried: true },
     state: { type: String, requried: true },

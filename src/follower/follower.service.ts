@@ -1,4 +1,4 @@
-import {Model} from "mongoose";
+import {Model, ObjectId} from "mongoose";
 import {Injectable} from "@nestjs/common";
 import {InjectModel} from "@nestjs/mongoose";
 
@@ -73,7 +73,7 @@ export class FollowerService {
         throw ErrorMessageException("User is can't follow himself.");
       }
       const followingUser = await this.userService.findById(
-        followerDto?.followingUserId as string,
+        followerDto?.followingUserId as ObjectId,
       );
       if (!followingUser?.isCreator) {
         throw ErrorMessageException(
