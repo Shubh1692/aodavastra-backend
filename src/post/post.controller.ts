@@ -9,19 +9,18 @@ import {
   Param,
   Delete,
   UseInterceptors,
-  UploadedFile
+  UploadedFile,
+  Query
 } from "@nestjs/common";
 import { AuthGuard } from "@nestjs/passport";
 import { Request } from "express";
 import { PostService } from "./post.service";
 import { ApiBearerAuth, ApiBody, ApiConsumes, ApiTags } from "@nestjs/swagger";
 import { User } from "../user/user.interface";
-import { PostDto } from "./post.interface";
+import { PostDto, PaginationParams } from "./post.interface";
 import { imageFileFilter, multerStorage } from "../common/multer";
 import { FileInterceptor } from "@nestjs/platform-express";
-
-
-
+import { ObjectId } from 'mongoose'
 @ApiTags("post")
 @Controller("post")
 export class PostController {
@@ -30,9 +29,9 @@ export class PostController {
   @Get("")
   // @UseGuards(AuthGuard())
   // @ApiBearerAuth("JWT-auth")
-  posts(@Req() req: Request) {
-    const user = req.user as User;
-    return this.postService.findPosts();
+  posts(@Req() req: Request,
+    @Query() { page, itemsPerPage }: PaginationParams) {
+    return this.postService.findPosts(page, itemsPerPage);
   }
 
   @Get(":id")
@@ -72,17 +71,6 @@ export class PostController {
       },
     },
   })
-  // schema: {
-  //   type: 'object',
-  //   properties: {
-  //     comment: { type: 'string' },
-  //     outletId: { type: 'integer' },
-  //     file: {
-  //       type: 'string',
-  //       format: 'binary',
-  //     },
-  //   },
-  // },
   @UseInterceptors(
     FileInterceptor("file", {
       storage: multerStorage,
@@ -96,6 +84,54 @@ export class PostController {
     const user = req.user as User;
     return this.postService.create(
       user._id,
-      postDto as any, media) ;
+      postDto as any, media);
+  }
+
+
+  @Put(":id")
+  @ApiBody({
+    schema: {
+      type: "object",
+      properties: {
+        description: { type: 'string' },
+        tagPeople: {
+          type: 'array', properties: {
+            items: {
+              type: 'string'
+            }
+          }
+        },
+        tagProduct: {
+          type: 'array', properties: {
+            items: {
+              type: 'string'
+            }
+          }
+        },
+        file: {
+          type: "string",
+          format: "binary",
+        },
+
+      },
+    },
+  })
+  @UseInterceptors(
+    FileInterceptor("file", {
+      storage: multerStorage,
+      fileFilter: imageFileFilter,
+    }),
+  )
+  @UseGuards(AuthGuard())
+  @ApiConsumes("multipart/form-data")
+  @ApiBearerAuth("JWT-auth")
+  async updatePost(
+    @UploadedFile("file") media: Express.Multer.File,
+    @Req() req: Request,
+    @Body() postDto: PostDto,
+    @Param('id') id: string
+  ) {
+    const user = req.user as User;
+    return this.postService.update(id, user._id, postDto as any, media);
   }
 }
