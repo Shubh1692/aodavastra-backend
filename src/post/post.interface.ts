@@ -11,8 +11,10 @@ import {
     IsObject,
     IsArray,
     ArrayMinSize,
+    IsNumber,
 } from "class-validator";
 import { ApiProperty } from "@nestjs/swagger";
+import { Type } from "class-transformer";
 
 
 export enum PostType {
@@ -66,5 +68,17 @@ export type Post = Readonly<{
         @ApiProperty({example: "tag-product"})
         @IsNotEmpty()
         readonly tagProduct!: string;
+      }
+      export class PaginationParams {
+        @ApiProperty({example: 1})
+        @IsNumber()
+        @Type(() => Number)
+        readonly page!: number;
+
+        @ApiProperty({example: 10})
+        @IsNumber()
+        @Type(() => Number)
+        @IsNotEmpty()
+        readonly itemsPerPage!: number;
       }
       
