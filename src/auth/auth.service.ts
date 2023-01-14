@@ -54,9 +54,13 @@ export class AuthService {
   }
 
   async login(user: User) {
+    const follow = await this.followerService.findFlowingAndFollowerCountByUserId(user._id);
     return {
       token: this.jwtService.sign({}, {subject: `${user.id}`}),
-      user: user.getPublicData(),
+      user: {
+        ...user.getPublicData(),
+        ...follow
+      },
     };
   }
 
@@ -69,7 +73,11 @@ export class AuthService {
 
     return {
       token: this.jwtService.sign({}, {subject: `${user.id}`}),
-      user: user.getPublicData(),
+      user: {
+        ...user.getPublicData(),
+        following: 0,
+        followers: 0,
+      },
     };
   }
 
@@ -163,8 +171,11 @@ export class AuthService {
   async getUserProfile(user: User) {
     const follow = await this.followerService.findFlowingAndFollowerCountByUserId(user._id);
     return {
-      ...user.getPublicData(),
-      ...follow
+      user: {
+        ...user.getPublicData(),
+        ...follow,
+      },
+      token: this.jwtService.sign({}, {subject: `${user.id}`}),
     }
   }
 }

@@ -15,7 +15,9 @@ export class AddressService {
     const addresses = await this.addressModel.find({
       userId,
       isActive: true
-    }).sort('isDefault');
+    }).sort({
+      isDefault: -1
+    });
     return addresses;
   }
 

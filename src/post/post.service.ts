@@ -28,7 +28,6 @@ export class PostService {
     itemsPerPage: number;
   }> {
     const offset = (page - 1) * itemsPerPage;
-    console.log({ itemsPerPage, offset })
 
     const posts = await this.postModel.aggregate([{
       $match: {
