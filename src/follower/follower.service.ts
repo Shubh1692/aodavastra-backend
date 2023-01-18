@@ -70,34 +70,66 @@ export class FollowerService {
       if (
         followerUserId?.toString() === followerDto?.followingUserId?.toString()
       ) {
-        throw ErrorMessageException("User is can't follow himself.");
+        throw ErrorMessageException("The user cannot follow themselves.");
       }
       const followingUser = await this.userService.findById(
         followerDto?.followingUserId as ObjectId,
       );
       if (!followingUser?.isCreator) {
         throw ErrorMessageException(
-          "User is not creator which followed by you.",
+          "User is not the creator you are following.",
         );
       }
-      const hasFollowed = await this.followerModel.deleteOne({
+      const hasFollowed = await this.followerModel.findOne({
         followerUserId,
         followingUserId: followerDto.followingUserId,
       });
-      if (!hasFollowed.deletedCount) {
+      if (!hasFollowed) {
         const follower = await this.followerModel.create({
           ...followerDto,
           followerUserId,
           isActive: true,
         });
-        return {
-          follow: true,
-        };
-      } else {
-        return {
-          follow: false,
-        };
       }
+      return {
+        follow: true,
+      };
+    } catch (error) {
+      const message = error as {message: string};
+      throw ErrorMessageException(
+        message?.message || "User unable to follow user",
+      );
+    }
+  }
+
+
+  async remove(
+    followerDto: Partial<Follower>,
+    followerUserId: string,
+  ): Promise<{
+    follow: boolean;
+  }> {
+    try {
+      if (
+        followerUserId?.toString() === followerDto?.followingUserId?.toString()
+      ) {
+        throw ErrorMessageException("The user cannot unfollow themselves.");
+      }
+      const followingUser = await this.userService.findById(
+        followerDto?.followingUserId as ObjectId,
+      );
+      if (!followingUser?.isCreator) {
+        throw ErrorMessageException(
+          "User is not the creator you are unfollowing.",
+        );
+      }
+      await this.followerModel.deleteOne({
+        followerUserId,
+        followingUserId: followerDto.followingUserId,
+      });
+      return {
+        follow: true,
+      };
     } catch (error) {
       const message = error as {message: string};
       throw ErrorMessageException(

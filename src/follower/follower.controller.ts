@@ -42,8 +42,16 @@ export class FollowerController {
   @Post("")
   @UseGuards(AuthGuard())
   @ApiBearerAuth("JWT-auth")
-  addRemoveFollower(@Req() req: Request, @Body() followerDto: FollowerDto) {
+  addFollower(@Req() req: Request, @Body() followerDto: FollowerDto) {
     const user = req.user as User;
     return this.followerService.create(followerDto, user._id);
+  }
+
+  @Delete("")
+  @UseGuards(AuthGuard())
+  @ApiBearerAuth("JWT-auth")
+  removeFollower(@Req() req: Request, @Body() followerDto: FollowerDto) {
+    const user = req.user as User;
+    return this.followerService.remove(followerDto, user._id);
   }
 }
