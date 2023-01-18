@@ -128,7 +128,7 @@ export class FollowerService {
         followingUserId: followerDto.followingUserId,
       });
       return {
-        follow: true,
+        follow: false,
       };
     } catch (error) {
       const message = error as {message: string};
