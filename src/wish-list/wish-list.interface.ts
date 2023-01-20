@@ -1,3 +1,5 @@
+import { ApiProperty } from "@nestjs/swagger";
+import { IsNotEmpty, IsString } from "class-validator";
 import { Document, ObjectId } from "mongoose";
 
 export type WishListPublicData = Readonly<{
@@ -5,7 +7,7 @@ export type WishListPublicData = Readonly<{
     userId: ObjectId;
     productId: ObjectId;
     isActive: boolean;
-    }>;
+}>;
 
 export type WishListMethods = {
     getPublicData: () => WishListPublicData;
@@ -20,3 +22,12 @@ export type WishList = Readonly<{
 }> &
     WishListMethods &
     Document;
+
+
+export class WishListDto {
+
+    @ApiProperty({ example: "uuid" })
+    @IsString()
+    @IsNotEmpty()
+    readonly productId!: ObjectId;
+}

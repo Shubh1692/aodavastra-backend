@@ -5,7 +5,7 @@ import {Product} from "./product.interface";
 export const ProductSchema = new mongoose.Schema<Product>(
   {
     userId: {type: mongoose.Schema.Types.ObjectId, required: true, ref: "User"},
-    productName: {type: String},
+    name: {type: String},
     isActive: {type: Boolean, default: true},
   },
   {timestamps: true},
@@ -18,13 +18,13 @@ ProductSchema.methods.getPublicData = function () {
   const {
     userId,
     _id,
-    productName,
+    name,
     isActive,
   } = this;
   return {
     userId,
     _id,
-    productName,
+    name,
     isActive,
   };
 };

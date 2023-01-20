@@ -10,7 +10,7 @@ export const WishListSchema = new mongoose.Schema<WishList>(
   },
   { timestamps: true },
 );
-WishListSchema.index({ "userId": 1, "postId": 1 }, { "unique": true });
+WishListSchema.index({ "userId": 1, "productId": 1 }, { "unique": true });
 /**
  * Methods.
  */

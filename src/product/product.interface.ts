@@ -34,7 +34,7 @@ export type Product = Readonly<{
     id: ObjectId;
     userId: ObjectId;
     isActive: boolean;
-    productName: string;
+    name: string;
 
 }> &
     ProductMethods &
@@ -47,7 +47,7 @@ export class ProductDto {
     @ApiProperty({ example: "toffee" })
     @IsString()
     @IsNotEmpty()
-    readonly productName!: string;
+    readonly name!: string;
 
     
 }
