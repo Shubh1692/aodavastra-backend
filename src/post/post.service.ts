@@ -1,7 +1,6 @@
 import { Model, ObjectId } from "mongoose";
 import { ConflictException, Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
-
 import { Post } from "./post.interface";
 import { ErrorMessageException } from "../common/exceptions";
 import { FileUploadService } from "../common/services/upload.service";
