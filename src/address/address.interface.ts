@@ -13,8 +13,8 @@ import {ApiProperty} from "@nestjs/swagger";
 import mongoose, {Document, ObjectId} from "mongoose";
 
 export type AddressPublicData = Readonly<{
-  id: string;
-  userId: string;
+  id: ObjectId;
+  userId: ObjectId;
   isActive: boolean;
   pinCode: string;
   city: string;

@@ -12,6 +12,8 @@ import {UserModule} from "./user/user.module";
 import config from "./config";
 import { AddressModule } from "./address/address.module";
 import { FollowerModule } from "./follower/follower.module";
+import { WishListModule } from "./wish-list/wish-list.module";
+import { ProductModule } from "./product/product.module";
 import { PostModule } from "./post/post.module";
 import { PostLikeModule } from "./post-like/post-like.module";
 import { CommentModule } from "./comment/comment.module";
@@ -20,6 +22,8 @@ import { ServeStaticModule } from "@nestjs/serve-static";
 import { join } from 'path'; 
 
 const DEV_TRANSPORTER = {
+
+  
   host: "smtp.ethereal.email",
   port: 587,
   auth: {
@@ -45,6 +49,8 @@ const DEV_TRANSPORTER = {
     AddressModule,
     FollowerModule,
     PostModule,
+    WishListModule,
+    ProductModule,
     PostLikeModule,
     CommentModule, 
     ServeStaticModule.forRoot({
