@@ -25,7 +25,6 @@ export type WishList = Readonly<{
 
 
 export class WishListDto {
-
     @ApiProperty({ example: "uuid" })
     @IsString()
     @IsNotEmpty()

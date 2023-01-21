@@ -22,6 +22,7 @@ export const setupSwaggerDocument =
  */
 export const setupSwaggerDocuments = (app: any) =>
   documents.forEach(({path, config, module}) => {
+    console.log( `docs/${path}`,)
     SwaggerModule.setup(
       `docs/${path}`,
       app,
