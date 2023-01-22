@@ -19,11 +19,18 @@ export class FollowerService {
         followerUserId,
         isActive: true,
       })
-      .populate("followingUserId")
+      .populate({
+        path: "followingUserId", select: {
+          _id: 1, name: 1, bio: true
+        },
+        match: {
+         
+        }
+      })
       .sort({
         createdAt: -1,
       });
-    return followers;
+    return followers.filter(({  followingUserId }) => followingUserId);
   }
 
   async findFollowerUsersByUserId(followingUserId: string): Promise<Follower[]> {
@@ -32,11 +39,17 @@ export class FollowerService {
         followingUserId,
         isActive: true,
       })
-      .populate("followerUserId")
+      .populate({
+        path: "followerUserId", select: {
+          _id: 1, name: 1, bio: true
+        },
+        match: {
+        }
+      })
       .sort({
         createdAt: -1,
       });
-    return followers;
+    return followers.filter(({  followerUserId }) => followerUserId);
   }
 
 

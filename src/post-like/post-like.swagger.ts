@@ -2,13 +2,13 @@ import {DocumentBuilder} from "@nestjs/swagger";
 import {setupSwaggerDocument} from "../common/swagger";
 
 export default setupSwaggerDocument(
-  "post",
+  "post-like",
   new DocumentBuilder()
-    .setTitle("Post Docs")
-    .setDescription("Basic user post features")
+    .setTitle("Post like Docs")
+    .setDescription("Basic user follow features")
     .setVersion("1.0")
     .setBasePath("api")
-    .addTag("post")
+    .addTag("post-like")
     .addBearerAuth(
       {
         type: 'http',
@@ -22,6 +22,3 @@ export default setupSwaggerDocument(
     )
     .build(),
 );
-
-
-
