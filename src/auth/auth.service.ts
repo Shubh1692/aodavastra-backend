@@ -53,6 +53,10 @@ export class AuthService {
     `;
   }
 
+  async getTagPeople(alreadyTagPeople: string[], search?: string) {
+    return this.userService.getTagPeople(alreadyTagPeople, search);
+  }
+
   async login(user: User) {
     const follow = await this.followerService.findFlowingAndFollowerCountByUserId(user._id);
     return {
