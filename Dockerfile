@@ -12,7 +12,7 @@ COPY package*.json ./
 
 COPY .env.staging ./.env
 
-RUN yarn set version berry && yarn set version canary && yarn
+RUN corepack enable && corepack prepare yarn@stable --activate && yarn set version 3.1.1 && yarn install
 # Install app dependencies
 RUN yarn install
 
