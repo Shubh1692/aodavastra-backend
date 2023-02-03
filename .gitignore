@@ -42,3 +42,4 @@ test/**/*.js
 
 uploads
 settings.json
+build
