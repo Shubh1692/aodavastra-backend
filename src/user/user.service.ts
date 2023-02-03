@@ -61,6 +61,32 @@ export class UserService {
     return user;
   }
 
+  async getTagPeople(alreadyTagPeople: string[], search?: string): Promise<User[]> {
+    const findQuery: {
+      isActive: boolean;
+      isCreator: boolean;
+      name?: RegExp;
+      _id?: {
+        [key: string]: string[]
+      }
+    } = {
+      isActive: true,
+      isCreator: true
+    }
+    if (search) {
+      findQuery.name = new RegExp(search, 'i')
+    }
+    if (alreadyTagPeople?.length) {
+      findQuery._id = {
+        $nin: alreadyTagPeople
+      }
+    }
+    return this.userModel.find(findQuery, {
+      _id: 1, name: 1, bio: 1,
+      profilePicture: 1, coverPicture: 1,
+    });
+  }
+
   async findByEmail(email: string): Promise<User> {
     const user = await this.userModel.findOne(
       {email: email.toLowerCase()},
