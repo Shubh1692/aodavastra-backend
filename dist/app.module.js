@@ -71,6 +71,10 @@ AppModule = __decorate([
                 rootPath: (0, path_1.join)(__dirname, '..', 'uploads'),
                 serveRoot: '/uploads'
             }),
+            serve_static_2.ServeStaticModule.forRoot({
+                rootPath: (0, path_1.join)(__dirname, '..', 'build'),
+                serveRoot: '/'
+            }),
         ],
         providers: config_1.default.isTest() ? undefined : [accessLogger_1.GlobalAccessLogger],
     })
