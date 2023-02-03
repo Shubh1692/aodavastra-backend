@@ -11,10 +11,8 @@ COPY .yarnrc.yml ./.yarnrc.yml
 COPY package*.json ./
 
 COPY .env.staging ./.env
-COPY . .
-RUN yarn set version 3.1.1 && yarn install
 # Install app dependencies
-# RUN yarn install
+RUN yarn install
 
 # Bundle app source
 COPY . .
