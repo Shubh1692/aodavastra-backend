@@ -1,4 +1,4 @@
-import { Model } from "mongoose";
+import { Model, ObjectId } from "mongoose";
 import { Address } from "./address.interface";
 export declare class AddressService {
     private readonly addressModel;
@@ -7,5 +7,5 @@ export declare class AddressService {
     findById(_id: string, userId: string): Promise<Address>;
     create(addressDto: Partial<Address>, userId: string): Promise<Address>;
     update(id: string, addressDto: Partial<Address>, userId: string): Promise<Address>;
-    delete(id: string, userId: string): Promise<Address>;
+    delete(id: string, userId: ObjectId): Promise<Address>;
 }

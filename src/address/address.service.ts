@@ -1,4 +1,4 @@
-import { Model } from "mongoose";
+import { Model, ObjectId } from "mongoose";
 import { ConflictException, Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 
@@ -58,7 +58,7 @@ export class AddressService {
       userId, isActive: true, isDeault: true
     });
     if (addressDto.isDefault) {
-      if (oldDefaultAddress?._id !== id) {
+      if (oldDefaultAddress?._id?.toString() !== id) {
           oldDefaultAddress?.set({
             isDefault: false
           })
@@ -70,7 +70,7 @@ export class AddressService {
       }
     }
     const address = await this.addressModel.findOneAndUpdate({
-      id, userId, isActive: true,
+      _id: id, userId, isActive: true,
     }, {
       ...addressDto,
       userId,
@@ -85,15 +85,15 @@ export class AddressService {
     return address;
   }
 
-  async delete(id: string, userId: string): Promise<Address> {
+  async delete(id: string, userId: ObjectId): Promise<Address> {
     const oldDefaultAddress = await this.addressModel.findOne({
-      userId, isActive: true, isDeault: true
+      userId, isActive: true, isDefault: true
     });
-    if (oldDefaultAddress?._id === id){
+    if (oldDefaultAddress?._id?.toString() === id){
       throw ErrorMessageException("User unable to delete address"); 
     }
     const address = await this.addressModel.findOneAndUpdate({
-      id, userId
+      _id: id, userId
     }, {
       isActive: false,
       userId,
