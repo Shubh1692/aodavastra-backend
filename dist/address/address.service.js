@@ -57,11 +57,12 @@ let AddressService = class AddressService {
         return address;
     }
     async update(id, addressDto, userId) {
+        var _a;
         const oldDefaultAddress = await this.addressModel.findOne({
             userId, isActive: true, isDeault: true
         });
         if (addressDto.isDefault) {
-            if ((oldDefaultAddress === null || oldDefaultAddress === void 0 ? void 0 : oldDefaultAddress._id) !== id) {
+            if (((_a = oldDefaultAddress === null || oldDefaultAddress === void 0 ? void 0 : oldDefaultAddress._id) === null || _a === void 0 ? void 0 : _a.toString()) !== id) {
                 oldDefaultAddress === null || oldDefaultAddress === void 0 ? void 0 : oldDefaultAddress.set({
                     isDefault: false
                 });
@@ -74,7 +75,7 @@ let AddressService = class AddressService {
             }
         }
         const address = await this.addressModel.findOneAndUpdate({
-            id, userId, isActive: true,
+            _id: id, userId, isActive: true,
         }, Object.assign(Object.assign({}, addressDto), { userId }), {
             new: true
         });
@@ -84,14 +85,15 @@ let AddressService = class AddressService {
         return address;
     }
     async delete(id, userId) {
+        var _a;
         const oldDefaultAddress = await this.addressModel.findOne({
-            userId, isActive: true, isDeault: true
+            userId, isActive: true, isDefault: true
         });
-        if ((oldDefaultAddress === null || oldDefaultAddress === void 0 ? void 0 : oldDefaultAddress._id) === id) {
+        if (((_a = oldDefaultAddress === null || oldDefaultAddress === void 0 ? void 0 : oldDefaultAddress._id) === null || _a === void 0 ? void 0 : _a.toString()) === id) {
             throw (0, exceptions_1.ErrorMessageException)("User unable to delete address");
         }
         const address = await this.addressModel.findOneAndUpdate({
-            id, userId
+            _id: id, userId
         }, {
             isActive: false,
             userId,

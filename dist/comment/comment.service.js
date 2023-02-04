@@ -37,7 +37,7 @@ let CommentService = class CommentService {
     }
     async delete(id, userId) {
         const comment = await this.commentModel.findOneAndUpdate({
-            id, userId
+            _id: id, userId
         }, {
             isActive: false,
             userId,
