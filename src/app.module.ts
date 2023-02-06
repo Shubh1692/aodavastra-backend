@@ -61,6 +61,10 @@ const DEV_TRANSPORTER = {
       rootPath: join(__dirname, '..', 'build'),
       serveRoot: '/'
     }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'build'),
+      serveRoot: '*'
+    }),
   ],
   providers: config.isTest() ? undefined : [GlobalAccessLogger],
 })
