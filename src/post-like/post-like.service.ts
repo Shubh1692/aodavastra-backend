@@ -2,54 +2,57 @@ import {Model, ObjectId} from "mongoose";
 import {Injectable} from "@nestjs/common";
 import {InjectModel} from "@nestjs/mongoose";
 
-import {WishList} from "./wish-list.interface";
+import {PostLike} from "./post-like.interface";
 import {ErrorMessageException} from "../common/exceptions";
 import {UserService} from "../user/user.service";
 
 @Injectable()
-export class WishListService {
+export class PostLikeService {
   constructor(
-    @InjectModel("WishList") private readonly wishListModel: Model<WishList>,
+    @InjectModel("PostLike") private readonly postLikeModel: Model<PostLike>,
     private readonly userService: UserService,
   ) {}
 
-  async findWishListByUserId(userId: string): Promise<WishList[]> {
-    const wishLists = await this.wishListModel
+  async findPostLikeByUserId(userId: string): Promise<PostLike[]> {
+    const postLikes = await this.postLikeModel
       .find({
         userId,
-        isActive: true
+        isActive: true,
+        postId: {
+          $ne: null
+        }
       }).populate({
-        path: "productId", select: {
-          _id: 1, name: 1
+        path: "postId", select: {
+          _id: 1, description: true, media: true, type: true
         },
         match: {
           isActive: true
         }
       })
       
-    return wishLists.filter(({  productId }) => productId);;
+    return postLikes.filter(({  postId }) => postId);
   }
 
   async create(
-    wishListDto: Partial<WishList>,
+    postLikeDto: Partial<PostLike>,
     userId: string,
   ): Promise<{
-    wishList: boolean;
+    postLike: boolean;
   }> {
     try {
-      const hasWishList = await this.wishListModel.findOne({
-        productId: wishListDto.productId,
+      const hasPostLike = await this.postLikeModel.findOne({
+        postId: postLikeDto.postId,
         userId
       });
-      if (!hasWishList) {
-        const wishList = await this.wishListModel.create({
-          ...wishListDto,
+      if (!hasPostLike) {
+        const postLike = await this.postLikeModel.create({
+          ...postLikeDto,
           userId,
           isActive: true,
         });
       }
       return {
-        wishList: true,
+        postLike: true,
       };
     } catch (error) {
       const message = error as {message: string};
@@ -61,18 +64,18 @@ export class WishListService {
 
 
   async remove(
-    wishListDto: Partial<WishList>,
+    postLikeDto: Partial<PostLike>,
     userId: string,
   ): Promise<{
-    wishList: boolean;
+    postLike: boolean;
   }> {
     try {
-      await this.wishListModel.deleteOne({
+      await this.postLikeModel.deleteOne({
         userId,
-        productId: wishListDto.productId,
+        postId: postLikeDto.postId,
       });
       return {
-        wishList: false,
+        postLike: false,
       };
     } catch (error) {
       const message = error as {message: string};

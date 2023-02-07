@@ -1,5 +1,5 @@
 # compiled output
-/dist
+dist
 /node_modules
 
 # Logs
@@ -41,3 +41,5 @@ test/**/*.js
 .yarn/cache
 
 uploads
+settings.json
+build

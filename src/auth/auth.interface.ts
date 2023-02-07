@@ -6,8 +6,10 @@ import {
   IsNotEmpty,
   IsOptional,
   IsString,
+  IsArray,
 } from "class-validator";
 import {ApiProperty} from "@nestjs/swagger";
+import { Type } from "class-transformer";
 
 // TODO add mixins like EmailField, PasswordField
 
@@ -36,12 +38,12 @@ export class SocialLinks {
 }
 
 export class SignUpDto {
-  @ApiProperty({example: "email@email.com", maxLength: 255})
+  @ApiProperty({example: "noncreatror@yopmail.com", maxLength: 255})
   @IsEmail()
   @MaxLength(255)
   readonly email!: string;
 
-  @ApiProperty({example: "password", minLength: 8})
+  @ApiProperty({example: "123456789", minLength: 8})
   @MinLength(8)
   readonly password!: string;
 
@@ -85,7 +87,7 @@ export class SignUpDto {
 }
 
 export class UserUpdateDto {
-  @ApiProperty({example: "email@email.com", maxLength: 255})
+  @ApiProperty({example: "noncreatror@yopmail.com", maxLength: 255})
   @IsEmail()
   @MaxLength(255)
   readonly email!: string;
@@ -114,7 +116,7 @@ export class UserUpdateDto {
 }
 
 export class UserCreatorDto {
-  @ApiProperty({example: "email@email.com", maxLength: 255})
+  @ApiProperty({example: "noncreatror@yopmail.com", maxLength: 255})
   @IsEmail()
   @MaxLength(255)
   readonly email!: string;
@@ -142,25 +144,25 @@ export class UserCreatorDto {
   readonly phoneNo!: string;
 }
 export class LoginDto {
-  @ApiProperty({example: "email@email.com", maxLength: 255})
+  @ApiProperty({example: "noncreatror@yopmail.com", maxLength: 255})
   @IsEmail()
   @MaxLength(255)
   readonly email!: string;
 
-  @ApiProperty({example: "password", minLength: 8})
+  @ApiProperty({example: "123456789", minLength: 8})
   @MinLength(8)
   readonly password!: string;
 }
 
 export class ForgottenPasswordDto {
-  @ApiProperty({example: "email@email.com", maxLength: 255})
+  @ApiProperty({example: "noncreatror@yopmail.com", maxLength: 255})
   @IsEmail()
   @MaxLength(255)
   readonly email!: string;
 }
 
 export class ResetPasswordDto {
-  @ApiProperty({example: "email@email.com", maxLength: 255})
+  @ApiProperty({example: "noncreatror@yopmail.com", maxLength: 255})
   @IsEmail()
   @MaxLength(255)
   readonly email!: string;
@@ -186,4 +188,17 @@ export class ChangePasswordDto {
   @IsString()
   @MinLength(8)
   readonly newPassword!: string;
+}
+
+export class TagPeopleQuery {
+  @ApiProperty({ required: false})
+  @IsOptional()
+  @IsString()
+  readonly search!: string;
+
+  @ApiProperty({ required: false})
+  @IsOptional()
+  @IsArray()
+  @Type(() => String)
+  readonly alreadyTagPeople!: string[];
 }

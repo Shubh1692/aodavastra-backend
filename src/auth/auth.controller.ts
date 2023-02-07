@@ -9,6 +9,7 @@ import {
   Put,
   UseInterceptors,
   UploadedFile,
+  Query,
 } from "@nestjs/common";
 import {AuthGuard} from "@nestjs/passport";
 import {Request} from "express";
@@ -22,6 +23,7 @@ import {
   UserUpdateDto,
   ChangePasswordDto,
   UserCreatorDto,
+  TagPeopleQuery,
 } from "./auth.interface";
 import {AuthService} from "./auth.service";
 import {ApiBearerAuth, ApiBody, ApiConsumes, ApiTags} from "@nestjs/swagger";
@@ -36,6 +38,13 @@ export class AuthController {
   @Get("activate/:userId/:activationToken")
   activate(@Param() params: ActivateParams, @Param("userId") userId: string) {
     return this.authService.activate(params);
+  }
+
+  @Post("tag-people")
+  @UseGuards(AuthGuard())
+  @ApiBearerAuth("JWT-auth")
+  getCreatorUsers(@Body() tagPeopleQuery: TagPeopleQuery) {
+    return this.authService.getTagPeople(tagPeopleQuery?.alreadyTagPeople, tagPeopleQuery.search);
   }
 
   @UseGuards(AuthGuard("local"))

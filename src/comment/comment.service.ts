@@ -37,7 +37,7 @@ export class CommentService {
     
     
     const comment = await this.commentModel.findOneAndUpdate({
-      id, userId
+      _id: id, userId
     }, {
       isActive: false,
       userId,

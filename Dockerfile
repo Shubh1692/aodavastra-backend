@@ -11,7 +11,6 @@ COPY .yarnrc.yml ./.yarnrc.yml
 COPY package*.json ./
 
 COPY .env.staging ./.env
-
 # Install app dependencies
 RUN yarn install
 
