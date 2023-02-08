@@ -35,7 +35,7 @@ export class AddressService {
 
   async create(addressDto: Partial<Address>, userId: string): Promise<Address> {
     const oldDefaultAddress = await this.addressModel.findOne({
-      userId, isActive: true, isDeault: true
+      userId, isActive: true, isDefault: true
     });
     if (addressDto.isDefault) {
       if (oldDefaultAddress) {
@@ -55,7 +55,7 @@ export class AddressService {
 
   async update(id: string, addressDto: Partial<Address>, userId: string): Promise<Address> {
     const oldDefaultAddress = await this.addressModel.findOne({
-      userId, isActive: true, isDeault: true
+      userId, isActive: true, isDefault: true
     });
     if (addressDto.isDefault) {
       if (oldDefaultAddress?._id?.toString() !== id) {
@@ -65,7 +65,7 @@ export class AddressService {
         await oldDefaultAddress?.save()
       }
     } else {
-      if (oldDefaultAddress?._id === id){
+      if (oldDefaultAddress?._id?.toString() === id){
         throw ErrorMessageException("User unable to update address"); 
       }
     }
