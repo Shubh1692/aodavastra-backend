@@ -3,7 +3,7 @@ import { IsNotEmpty, IsString } from "class-validator";
 import { Document, ObjectId } from "mongoose";
 
 export type WishListPublicData = Readonly<{
-    id: ObjectId;
+    _id: ObjectId;
     userId: ObjectId;
     productId: ObjectId;
     isActive: boolean;
@@ -14,7 +14,7 @@ export type WishListMethods = {
 };
 
 export type WishList = Readonly<{
-    id: ObjectId;
+    _id: ObjectId;
     userId: ObjectId;
     productId: ObjectId;
     isActive: boolean;

@@ -3,7 +3,7 @@ import {IsNotEmpty, IsString} from "class-validator";
 import {Document, ObjectId} from "mongoose";
 
 export type FollowerPublicData = Readonly<{
-  id: string;
+  _id: string;
   followerUserId: ObjectId;
   followingUserId: ObjectId;
   isActive: boolean;
@@ -14,7 +14,7 @@ export type FollowerMethods = {
 };
 
 export type Follower = Readonly<{
-  id: string;
+  _id: string;
   followerUserId: ObjectId;
   followingUserId: ObjectId;
   isActive: boolean;

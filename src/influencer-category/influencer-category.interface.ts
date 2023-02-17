@@ -17,52 +17,37 @@ import { ApiProperty } from "@nestjs/swagger";
 import { Type } from "class-transformer";
 
 
-export type ProductPublicData = Readonly<{
+export type InfluencerCategoryPublicData = Readonly<{
     _id: ObjectId;
     userId: ObjectId;
     isActive: boolean;
     name: string;
-    images: string[];
+    image: string;
     discription: string; 
-    categoryId: ObjectId;
-    brandId: ObjectId;
-    price: number;
-    discount: string;
-    commission: string;
-    pinCode: string[];
-    quantity: number;
-    endrosProduct: boolean;
-    
+    productId: ObjectId[];
 }>;
 
-export type ProductMethods = {
-    getPublicData: () => ProductPublicData;
+export type InfluencerCategoryMethods = {
+    getPublicData: () => InfluencerCategoryPublicData;
 };
 
-export type Product = Readonly<{
+export type InfluencerCategory = Readonly<{
 
     _id: ObjectId;
     userId: ObjectId;
     isActive: boolean;
     name: string;
-    images: string[];
+    image: string;
     discription: string; 
-    categoryId: ObjectId;
-    brandId: ObjectId;
-    price: number;
-    discount: string;
-    commission: string;
-    pinCode: string[];
-    quantity: number;
-    endrosProduct: boolean;
+    productId: ObjectId[];
 
 }> &
-    ProductMethods &
+    InfluencerCategoryMethods &
     Document;
 
 
 
-export class ProductDto {
+export class InfluencerCategoryDto {
 
     @ApiProperty({ example: "toffee" })
     @IsString()

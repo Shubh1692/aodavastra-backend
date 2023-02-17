@@ -22,7 +22,7 @@ export enum PostType {
     VIDEO = 'video'
 }
 export type PostPublicData = Readonly<{
-    id: ObjectId;
+    _id: ObjectId;
     userId: ObjectId;
     isActive: boolean;
     media: string[];
@@ -38,7 +38,7 @@ export type PostMethods = {
 };
 
 export type Post = Readonly<{
-    id: ObjectId;
+    _id: ObjectId;
     userId: ObjectId;
     isActive: boolean;
     media: string;
