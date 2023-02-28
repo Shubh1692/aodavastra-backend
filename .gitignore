@@ -43,3 +43,5 @@ test/**/*.js
 uploads
 settings.json
 build
+
+install-state.gz
