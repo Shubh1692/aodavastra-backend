@@ -16,6 +16,7 @@ export type UserPublicData = Readonly<{
   coverPicture: string;
   email: string;
   isActive: boolean;
+  isAdmin: boolean;
 }>;
 
 export type UserMethods = {
@@ -43,6 +44,8 @@ export type User = Readonly<{
   isActive: boolean;
   activationExpires: string;
   activationToken: string;
+  isAdmin: boolean;
+  
 }> &
   UserMethods &
   Document;

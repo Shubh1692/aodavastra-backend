@@ -53,12 +53,25 @@ export class PostService {
             as: "comments",
           },
         },
+        {
+          $lookup: {
+            from: "postlikes",
+            localField: "_id",
+            foreignField: "postId",
+            pipeline: [{$match: {isActive: true}}],
+            as: "likes"
+          }
+        },
+        { "$addFields": {
+          "likes": { "$size": "$likes" },
+        }}
+        
       ])
       .sort({updatedAt: -1});
     const postsWithPopulatedData = await this.postModel.populate(posts, [
       {
         path: "tagPeople",
-        select: {name: 1, bio: 1, _id: 1},
+        select: {name: 1, bio: 1, _id: 1, profilePicture: 1},
         match: {isCreator: true},
       },
       {path: "tagProduct", select: {name: 1, _id: 1}, match: {isActive: true}},

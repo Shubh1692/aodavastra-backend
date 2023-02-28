@@ -13,7 +13,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import { Document, ObjectId } from "mongoose";
 
 export type CommentPublicData = Readonly<{
-    id: ObjectId;
+    _id: ObjectId;
     userId: ObjectId;
     postId: ObjectId;
     comment: string;
@@ -25,7 +25,7 @@ export type CommentMethods = {
 };
 
 export type Comment = Readonly<{
-    id: ObjectId;
+    _id: ObjectId;
     userId: ObjectId;
     postId: ObjectId;
     comment: string;
