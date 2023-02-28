@@ -1,8 +1,8 @@
 import { Module } from "@nestjs/common";
-import setupSwagger from "./product.swagger";
-import { ProductModel } from "./product.model";
-import { ProductController } from "./product.controller";
-import { ProductService } from "./product.service";
+import setupSwagger from "./brand.swagger";
+import { BrandModel } from "./brand.model";
+import { BrandController } from "./brand.controller";
+import { BrandService } from "./brand.service";
 import PassportModule from "../common/passport.module";
 import { UserModule } from "../user/user.module";
 import config from "../config";
@@ -17,13 +17,14 @@ import { FileUploadService } from "../common/services/upload.service";
       secret: process.env.JWT_SECRET,
       signOptions: { expiresIn: config.auth.jwtTokenExpireInSec },
     }),
-    ProductModel],
-  providers: [ProductService, FileUploadService],
-  controllers: [ProductController],
+    BrandModel],
+  providers: [ BrandService, FileUploadService],
+  controllers: [BrandController],
   exports: [],
 })
-export class ProductModule { }
+export class BrandModule { }
 
-setupSwagger(ProductModule)
+setupSwagger(BrandModule);
+
 
 

@@ -17,9 +17,11 @@ import { ProductModule } from "./product/product.module";
 import { PostModule } from "./post/post.module";
 import { PostLikeModule } from "./post-like/post-like.module";
 import { CommentModule } from "./comment/comment.module";
-
+import { CategoryModule } from "./category/category.module";
+import { BrandModule } from "./brand/brand.module";
 import { ServeStaticModule } from "@nestjs/serve-static";
 import { join } from 'path'; 
+import { InfluencerCategoryModule } from "./influencer-category/influencer-category.module";
 
 const DEV_TRANSPORTER = {
 
@@ -52,7 +54,11 @@ const DEV_TRANSPORTER = {
     WishListModule,
     ProductModule,
     PostLikeModule,
-    CommentModule, 
+    CommentModule,
+    CategoryModule,
+    BrandModule, 
+    CommentModule,
+    InfluencerCategoryModule, 
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'uploads'),
       serveRoot: '/uploads'
