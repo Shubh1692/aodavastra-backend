@@ -1,11 +1,11 @@
-import {Model, ObjectId} from "mongoose";
-import {ConflictException, Injectable} from "@nestjs/common";
-import {InjectModel} from "@nestjs/mongoose";
-import {Post} from "./post.interface";
-import {ErrorMessageException} from "../common/exceptions";
-import {FileUploadService} from "../common/services/upload.service";
+import { Model, ObjectId } from "mongoose";
+import { ConflictException, Injectable } from "@nestjs/common";
+import { InjectModel } from "@nestjs/mongoose";
+import { Post } from "./post.interface";
+import { ErrorMessageException } from "../common/exceptions";
+import { FileUploadService } from "../common/services/upload.service";
 import config from "../config";
-import {constant, uniq} from "lodash";
+import { constant, uniq } from "lodash";
 
 @Injectable()
 export class PostService {
@@ -22,7 +22,7 @@ export class PostService {
   constructor(
     @InjectModel("Post") private readonly postModel: Model<Post>,
     private readonly fileUploadService: FileUploadService,
-  ) {}
+  ) { }
 
   async findPosts(
     page: number,
@@ -42,14 +42,14 @@ export class PostService {
             isActive: true,
           },
         },
-        {$skip: offset},
-        {$limit: itemsPerPage},
+        { $skip: offset },
+        { $limit: itemsPerPage },
         {
           $lookup: {
             from: "comments",
             localField: "_id",
             foreignField: "postId",
-            pipeline: [{$match: {isActive: true}}],
+            pipeline: [{ $match: { isActive: true } }],
             as: "comments",
           },
         },
@@ -58,23 +58,25 @@ export class PostService {
             from: "postlikes",
             localField: "_id",
             foreignField: "postId",
-            pipeline: [{$match: {isActive: true}}],
+            pipeline: [{ $match: { isActive: true } }, {
+              $project: {
+                _id: 1,
+                userId: 1,
+                updatedAt: 1
+              }
+            }],
             as: "likes"
           }
         },
-        { "$addFields": {
-          "likes": { "$size": "$likes" },
-        }}
-        
       ])
-      .sort({updatedAt: -1});
+      .sort({ updatedAt: -1 });
     const postsWithPopulatedData = await this.postModel.populate(posts, [
       {
         path: "tagPeople",
-        select: {name: 1, bio: 1, _id: 1, profilePicture: 1},
-        match: {isCreator: true},
+        select: { name: 1, bio: 1, _id: 1, profilePicture: 1 },
+        match: { isCreator: true },
       },
-      {path: "tagProduct", select: {name: 1, _id: 1}, match: {isActive: true}},
+      { path: "tagProduct", select: { name: 1, _id: 1 }, match: { isActive: true } },
     ]);
     const total = await this.postModel.count({
       isActive: true,
@@ -101,7 +103,7 @@ export class PostService {
 
   async create(
     userId: string,
-    postDto: Partial<Post & {tagPeople: string; tagProduct: string}>,
+    postDto: Partial<Post & { tagPeople: string; tagProduct: string }>,
     media: Express.Multer.File,
   ): Promise<Post> {
     let tagPeople: string[] = [],
@@ -115,7 +117,7 @@ export class PostService {
     if (!tagProduct.length) {
       throw ErrorMessageException("Post required at least one prodct");
     }
-    const imageUrlObj: {media?: string; type?: string} = {};
+    const imageUrlObj: { media?: string; type?: string } = {};
     if (media && process.env.AWS_ACCESS_KEY_ID) {
       imageUrlObj.media = await this.fileUploadService.upload(media);
     } else if (media) {
@@ -135,7 +137,7 @@ export class PostService {
   async update(
     _id: string,
     userId: string,
-    postDto: Partial<Post & {tagPeople: string; tagProduct: string}>,
+    postDto: Partial<Post & { tagPeople: string; tagProduct: string }>,
     media: Express.Multer.File,
   ): Promise<Post> {
     let tagPeople: string[] = [],
@@ -149,7 +151,7 @@ export class PostService {
     if (!tagProduct.length) {
       throw ErrorMessageException("Post required at least one prodct");
     }
-    const imageUrlObj: {media?: string; type?: string} = {};
+    const imageUrlObj: { media?: string; type?: string } = {};
     if (media && process.env.AWS_ACCESS_KEY_ID) {
       imageUrlObj.media = await this.fileUploadService.upload(media);
     } else if (media) {
