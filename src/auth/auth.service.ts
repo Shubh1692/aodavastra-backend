@@ -182,4 +182,15 @@ export class AuthService {
       token: this.jwtService.sign({}, {subject: `${user.id}`}),
     }
   }
+
+  async getUserProfileById(userId: ObjectId)  {
+    const user = await this.userService.findById(userId)
+    const follow = await this.followerService.findFlowingAndFollowerCountByUserId(userId);
+    return {
+      user: {
+        ...user.getPublicData(),
+        ...follow,
+      }
+    }
+  }
 }

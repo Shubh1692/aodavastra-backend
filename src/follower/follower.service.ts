@@ -53,7 +53,7 @@ export class FollowerService {
   }
 
 
-  async findFlowingAndFollowerCountByUserId(userId: string): Promise<{
+  async findFlowingAndFollowerCountByUserId(userId: ObjectId): Promise<{
     following: number;
     followers: number;
   }> {

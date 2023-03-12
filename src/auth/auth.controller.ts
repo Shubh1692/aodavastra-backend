@@ -66,6 +66,13 @@ export class AuthController {
     const user = req.user as User;
     return this.authService.getUserProfile(user);
   }
+
+  @UseGuards(AuthGuard())
+  @Get("/:userId")
+  @ApiBearerAuth("JWT-auth")
+  getUserProfile(@Req() req: Request, @Param("userId") userId: string) {
+    return this.authService.getUserProfileById(userId as any);
+  }
   
 
   @UseGuards(AuthGuard())
