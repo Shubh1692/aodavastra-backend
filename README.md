@@ -342,3 +342,4 @@ docker run --name modavastra -p 80:3001 -d svijay1692/modavastra
         "operatingSystemFamily": "WINDOWS_SERVER_2019_CORE"
     }
 }
+
