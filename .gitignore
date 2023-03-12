@@ -45,3 +45,4 @@ settings.json
 build
 
 install-state.gz
+yarn.lock
